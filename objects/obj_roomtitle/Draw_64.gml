@@ -1,0 +1,5 @@
+draw_set_halign(fa_center)
+draw_set_alpha(alpha)
+draw_text(480,textpos,string_upper(text)) 
+draw_set_alpha(1)
+draw_set_halign(fa_left)
