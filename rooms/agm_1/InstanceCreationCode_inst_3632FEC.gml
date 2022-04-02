@@ -1,1 +1,1 @@
-targetDest = "B"
+doorindex = "B"

@@ -24,6 +24,7 @@
     {"id":{"name":"d_escape","path":"sounds/d_escape/d_escape.yy",},"order":2,},
     {"id":{"name":"spr_player_fall","path":"sprites/spr_player_fall/spr_player_fall.yy",},"order":5,},
     {"id":{"name":"obj_plrtransition","path":"objects/obj_plrtransition/obj_plrtransition.yy",},"order":2,},
+    {"id":{"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"order":0,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"scr_soundstuff","path":"scripts/scr_soundstuff/scr_soundstuff.yy",},"order":1,},
     {"id":{"name":"spr_solid","path":"sprites/spr_solid/spr_solid.yy",},"order":1,},
@@ -100,6 +101,7 @@
     {"folderPath":"folders/Objects/collectible stuff.yy","order":10,"resourceVersion":"1.0","name":"collectible stuff","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/backgrounds.yy","order":11,"resourceVersion":"1.0","name":"backgrounds","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/transition.yy","order":12,"resourceVersion":"1.0","name":"transition","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/decor.yy","order":17,"resourceVersion":"1.0","name":"decor","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
