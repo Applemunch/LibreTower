@@ -6,7 +6,7 @@ function scr_plrscripts(){
 
 function scr_plr_grab() {
 	hsp = 8 * image_xscale
-	if instance_position(x + 30 * sign(hsp), y, obj_solid) != noone {
+	if instance_position(x + 25 * sign(hsp), y, obj_solid) != noone {
 		statetimer = 0
 		state = states.normal
 		exit

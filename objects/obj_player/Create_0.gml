@@ -1,9 +1,10 @@
 hsp = 0
 vsp = 0
 onground = false
+crouched = false
 canmove = true
 
-walkspeed = 0.6
+walkspeed = 0.3
 maxspeed = 6
 global.targetDest = "A"
 

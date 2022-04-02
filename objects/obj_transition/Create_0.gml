@@ -1,0 +1,2 @@
+targetRoom = testroom
+targetDest = "A"
