@@ -11,6 +11,12 @@ switch room
 	case agm_1:
 		titlethingy.text = "AGM's Deepest Pit of Hell"
 		break;
+	case agm_2:
+		titlethingy.text = "Strangely Under Construction"
+		break;
+	case agm_3:
+		titlethingy.text = "Under and Over"
+		break;
 }
 
 for (var i = 0; i < instance_number(obj_plrtransition); i++) {

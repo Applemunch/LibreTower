@@ -1,5 +1,8 @@
 switch state
 {
+	case states.normal:
+		scr_plr_normal()
+		break;
 	case states.grab:
 		scr_plr_grab()
 		break;
@@ -12,28 +15,6 @@ if canmove {
 
 	if !onground {
 		vsp += 0.35
-	}
-
-	if state == states.normal {
-		if keyboard_check(vk_up) and onground {
-			hsp = 0
-			changeSprite(spr_player_hjump_prep)
-		} else {
-			if keyboard_check(vk_left) or keyboard_check(vk_right) {
-				if !keyboard_check(vk_right) - keyboard_check(vk_left) == 0 {
-					hsp = clamp(hsp + walkspeed * ( keyboard_check(vk_right) - keyboard_check(vk_left) ), -maxspeed, maxspeed)
-					changeSprite(spr_player_move)
-					image_xscale = keyboard_check(vk_right) ? 1 : -1
-				}
-			} else {
-				hsp = 0
-				changeSprite(spr_player_idle)
-			}
-		}
-		if !onground {
-			changeSprite(spr_player_fall)
-		}
-		crouched = keyboard_check(vk_down)
 	}
 
 	if keyboard_check_pressed(vk_up) {
