@@ -81,13 +81,13 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"room_init","path":"rooms/room_init/room_init.yy",},},
     {"roomId":{"name":"titlescreen","path":"rooms/titlescreen/titlescreen.yy",},},
+    {"roomId":{"name":"hubroom","path":"rooms/hubroom/hubroom.yy",},},
+    {"roomId":{"name":"agm_1","path":"rooms/agm_1/agm_1.yy",},},
+    {"roomId":{"name":"agm_2","path":"rooms/agm_2/agm_2.yy",},},
+    {"roomId":{"name":"agm_3","path":"rooms/agm_3/agm_3.yy",},},
+    {"roomId":{"name":"agm_template","path":"rooms/agm_template/agm_template.yy",},},
     {"roomId":{"name":"testroom","path":"rooms/testroom/testroom.yy",},},
     {"roomId":{"name":"room_template","path":"rooms/room_template/room_template.yy",},},
-    {"roomId":{"name":"agm_1","path":"rooms/agm_1/agm_1.yy",},},
-    {"roomId":{"name":"agm_template","path":"rooms/agm_template/agm_template.yy",},},
-    {"roomId":{"name":"agm_2","path":"rooms/agm_2/agm_2.yy",},},
-    {"roomId":{"name":"hubroom","path":"rooms/hubroom/hubroom.yy",},},
-    {"roomId":{"name":"agm_3","path":"rooms/agm_3/agm_3.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
