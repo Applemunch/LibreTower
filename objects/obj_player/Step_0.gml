@@ -51,5 +51,7 @@ if keyboard_check_pressed(ord("C")) {
 	prevstate = state
 	state = states.taunt
 	sprite_index = spr_player_taunt
+	image_index = random_range(0, sprite_get_number(sprite_index) - 1)
+	image_speed = 0
 	alarm[0] = 30
 }
