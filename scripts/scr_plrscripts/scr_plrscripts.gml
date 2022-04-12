@@ -50,6 +50,40 @@ function scr_plr_grab() {
 				exit;
 		}
 	}
+	var thing = instance_place(x + hsp, y, obj_exitswitch)
+	if thing != noone and thing.toggled == false {
+		thing.toggleExitSwitch()
+		statetimer = 0
+		state = states.normal
+		hsp = 3 * -image_xscale
+		vsp = 2
+	}
+	/* this code is for a grab cancel. It's commented because it probably doesn't fit with how I want Libre Tower's gameplay to be
+	if keyboard_check_pressed(vk_left) and image_xscale == 1
+	or keyboard_check_pressed(vk_right) and image_xscale == -1 { // grab cancel
+		statetimer = 0
+		state = states.normal
+	} */
 	statetimer -= 1
 	if statetimer <= 0 state = states.normal
+}
+
+function scr_plr_hurt() {
+	sprite_index = spr_player_hurt
+	if onground vsp = -3
+	statetimer -= 1
+	if statetimer <= 0 {
+		state = states.normal
+		canmove = true
+	}
+}
+
+function hurtplayer(sethsp = -6 * image_xscale, setvsp = -4, removepoints = false) {
+	scr_playsound(sfx_hurt)
+	vsp = setvsp
+	hsp = sethsp
+	canmove = false
+	state = states.ouch
+	statetimer = 90
+	if removepoints global.collect = max(0, global.collect - 100)
 }

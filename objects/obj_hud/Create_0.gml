@@ -9,3 +9,5 @@ enum hudstates {
 }
 hudstate = hudstates.normal
 hudstate_timer = 0
+
+timerpos = 16

@@ -3,6 +3,7 @@ vsp = 0
 onground = false
 crouched = false
 canmove = true
+dogravity = true
 
 walkspeed = 0.3
 maxspeed = 6
@@ -13,7 +14,8 @@ enum states {
 	stunned,
 	crouch,
 	grab,
-	taunt
+	taunt,
+	ouch
 }
 state = 0
 prevstate = state

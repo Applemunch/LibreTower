@@ -1,4 +1,5 @@
 function scr_plr_collision(){
+	// to-do: make unactivated panic blocks NOT collide
 	if place_meeting(x, y, obj_slope)
 	{
 		while place_meeting(x + sign(hsp), y, obj_slope)
@@ -10,7 +11,7 @@ function scr_plr_collision(){
 			vsp = 0
 	}
 	var solidthing = instance_place(x + hsp, y, obj_solid)
-	if solidthing and solidthing.object_index != obj_slope
+	if solidthing and solidthing.mask_index != spr_blank and solidthing.object_index != obj_slope
 	{
 		while !place_meeting(x + sign(hsp), y, obj_solid)
 			x += sign(hsp)
@@ -19,7 +20,7 @@ function scr_plr_collision(){
 	x += hsp
 
 	var solidthing = instance_place(x, y + vsp, obj_solid)
-	if solidthing and solidthing.object_index != obj_slope
+	if solidthing and solidthing.mask_index != spr_blank and solidthing.object_index != obj_slope
 	{
 		while !place_meeting(x, y + sign(vsp), obj_solid)
 			y += sign(vsp)
