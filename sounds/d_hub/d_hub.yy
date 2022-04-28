@@ -12,7 +12,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "d_hub.wav",
-  "duration": 63.26857,
+  "duration": 104.721992,
   "parent": {
     "name": "music",
     "path": "folders/Sounds/music.yy",

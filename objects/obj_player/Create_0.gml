@@ -7,6 +7,7 @@ dogravity = true
 
 walkspeed = 0.3
 maxspeed = 6
+idlemode = 0 // 0 = normal, 1 = hurt, 2 = panic (UNUSED)
 global.targetDest = "A"
 
 enum states {

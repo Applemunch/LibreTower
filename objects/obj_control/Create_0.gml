@@ -8,4 +8,5 @@ global.panic = false
 global.timer = [2, 30]
 
 panictimer = 60
+panictimespent = 0 // used for wobble shader
 prevpanic = global.panic

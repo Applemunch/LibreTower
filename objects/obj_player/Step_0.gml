@@ -15,8 +15,7 @@ switch state
 mask_index = crouched ? spr_player_crouchmask : spr_player_mask
 walkspeed = 0.3 / (crouched + 1)
 if dogravity {
-	var thing = instance_place(x, y + 1, obj_solid)
-	if thing and thing.mask_index != spr_blank onground = true else onground = false // to-do: not this
+	onground = place_meeting(x, y + 1, obj_solid)
 
 	if !onground {
 		vsp += 0.35
@@ -28,8 +27,17 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 	if keyboard_check_pressed(vk_up) {
 		var possibleDoor = instance_place(x,y,obj_door)
 		if possibleDoor {
-			global.targetDest = possibleDoor.targetDest
-			room_goto(possibleDoor.targetRoom)
+			switch possibleDoor.object_index
+			{
+				case obj_exitdoor:
+					if !global.panic exit;
+					game_restart()
+					break;
+				default:
+					global.targetDest = possibleDoor.targetDest
+					room_goto(possibleDoor.targetRoom)
+					break;
+			}
 		}
 	}
 

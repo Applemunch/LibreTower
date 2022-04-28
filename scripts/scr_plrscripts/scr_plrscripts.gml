@@ -18,7 +18,15 @@ function scr_plr_normal() {
 			}
 		} else {
 			hsp = 0
-			changeSprite(spr_player_idle)
+			switch idlemode
+			{
+				case 0: default:
+					changeSprite(spr_player_idle)
+					break;
+				case 1:
+					changeSprite(spr_player_hurtidle)
+					break;
+			}
 		}
 	}
 	if !onground {
