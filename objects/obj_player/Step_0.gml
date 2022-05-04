@@ -6,8 +6,17 @@ switch state
 	case states.ouch:
 		scr_plr_hurt()
 		break;
+	case states.stunned:
+		scr_plr_stun()
+		break;
 	case states.grab:
 		scr_plr_grab()
+		break;
+	case states.run:
+		scr_plr_run()
+		break;
+	case states.runturn:
+		scr_plr_runturn()
 		break;
 }
 
@@ -51,10 +60,16 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		}
 	}
 	
+	if keyboard_check(vk_shift) {
+		if state != states.stunned and state != states.run and state != states.runturn {
+			changeState(states.run)
+		}
+	}
+	
 	if keyboard_check_pressed(ord("X")) {
-		if state != states.stunned and state != states.grab {
+		if state != states.stunned and state != states.grab and state != states.run {
 			statetimer = 45
-			state = states.grab
+			changeState(states.grab)
 			scr_playsound(sfx_grab, true)
 		}
 	}
@@ -65,7 +80,7 @@ if canmove and keyboard_check_pressed(ord("C")) and state != states.taunt {
 	canmove = false
 	dogravity = false
 	prevstate = state
-	state = states.taunt
+	changeState(states.taunt)
 	sprite_index = spr_player_taunt
 	image_index = random_range(0, sprite_get_number(sprite_index))
 	image_speed = 0

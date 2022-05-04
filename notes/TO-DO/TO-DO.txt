@@ -2,7 +2,7 @@ This is the Libre Tower TO-DO list, containing all of the things that need to be
 
 TO DO:
 * Add a Pizzascape replacement
-* Add an Ancient Cheese replacement
+* Add an Ancient Cheese replacement [DONE in the form of the Armory]
 * Finish AGM Facility
 * Finish and polish player sprites
 * Add better assets for AGM Facility's background
@@ -15,4 +15,4 @@ TO DO:
 	* Title screen music
 	* Probably a better escape theme (keep the harp leitmotif please)
 * Make concepts/sprites for enemies
-* Make concepts/sprites for the Knight transformation, as well as any others that are to be made.
+* Make concepts/sprites for the Knight transformation, as well as any others that are to be made... or needed

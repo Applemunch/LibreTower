@@ -1,3 +1,13 @@
+if layer_get_id("Tiles_1") != -1 {
+	with obj_solid {
+		switch object_index
+		{
+			case obj_destroyable: case obj_destructible: break;
+			default: visible = false break;
+		}
+	}
+}
+
 if global.panic exit;
 var music_choice = -1
 

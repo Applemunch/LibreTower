@@ -1,13 +1,23 @@
+if instance_exists(obj_player) {
+	if global.timer[0] + global.timer[1] <= 0 obj_player.idlemode = 1
+	else if obj_player.inventory == invstuff.gun obj_player.idlemode = 2
+}
+
+// panic shake
+if global.panic {
+	panictimespent += 0.5
+	view_yport[0] = random_range(-1 * (panictimespent / 2000), 1 * (panictimespent / 2000))	
+}
+
 if global.timer[0] + global.timer[1] <= 0 {
 	global.collect = max(global.collect - 1, 0)
-	if obj_player.idlemode != 1 obj_player.idlemode = 1
-	
 	exit;
 }
+
+// panic literally everything else
 if global.panic
 {
 	scr_playmusic(d_escape)
-	panictimespent += 1
 	panictimer -= 1
 	if panictimer <= 0 {
 		global.timer[1] -= 1
@@ -22,6 +32,4 @@ if global.panic
 		}
 		panictimer = 60
 	}
-} else {
-	panictimespent = 0
 }

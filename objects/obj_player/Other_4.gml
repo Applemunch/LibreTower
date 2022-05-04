@@ -20,6 +20,15 @@ switch room
 	case agm_4:
 		titlethingy.text = "The Blocks are Aggressive"
 		break;
+	case agm_5:
+		titlethingy.text = "Switch of DOOM"
+		break;
+	case agm_secret1:
+		titlethingy.text = "Factorial 3 and 4 Spare"
+		break;
+	case armory_1:
+		titlethingy.text = "It's The Damn Military!"
+		break;
 }
 
 for (var i = 0; i < instance_number(obj_plrtransition); i++) {
