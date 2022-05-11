@@ -27,8 +27,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "destructibles",
+    "path": "folders/Objects/destructibles.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_destroyable",

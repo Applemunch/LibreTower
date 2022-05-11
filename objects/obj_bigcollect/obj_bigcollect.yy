@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_collect_2",
-    "path": "sprites/spr_collect_2/spr_collect_2.yy",
+    "name": "spr_bigcollect_2",
+    "path": "sprites/spr_bigcollect_2/spr_bigcollect_2.yy",
   },
   "solid": false,
   "visible": true,
@@ -23,7 +23,9 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {

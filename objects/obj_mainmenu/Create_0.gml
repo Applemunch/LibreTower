@@ -12,7 +12,7 @@ options_main = [
 	"Exit"
 ]
 // the settings menu is handled without a variable
-options_clear = [
+options_yesno = [
 	"Yes",
 	"No"
 ]
@@ -54,7 +54,7 @@ function switchOpts() {
 			selectmax = array_length(curopt) - 1
 			exit;
 		case menutype.cleardata:
-			curopt = options_clear
+			curopt = options_yesno
 			break;
 	}
 	selectmax = array_length(curopt) - 1

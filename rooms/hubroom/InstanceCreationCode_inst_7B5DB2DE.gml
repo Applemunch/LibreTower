@@ -1,3 +1,3 @@
-targetRoom = hubroom
-msg_replace = "LEVEL 2"
+targetRoom = armory_1
+msg_replace = "ARMORY"
 targetDest = "A"

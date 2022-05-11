@@ -7,7 +7,7 @@ dogravity = true
 
 walkspeed = 0.3
 maxspeed = 6
-idlemode = 0 // 0 = normal, 1 = hurt, 2 = panic (UNUSED)
+idlemode = 0 // 0 = normal, 1 = hurt, 2 = panic (UNUSED), 3 = crouched
 
 statevars = array_create(32) // if you want to add or change a player state and it has a variable, chuck it here
 global.targetDest = "A"
@@ -25,6 +25,9 @@ enum states {
 state = 0
 prevstate = state
 statetimer = 0 // used to switch between certain states
+
+invuln = false
+invulm_timer = 0
 
 enum invstuff {
 	none,

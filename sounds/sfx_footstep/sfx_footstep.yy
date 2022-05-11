@@ -12,7 +12,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sfx_footstep.wav",
-  "duration": 0.158912,
+  "duration": 0.151769,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

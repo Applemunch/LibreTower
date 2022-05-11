@@ -22,7 +22,16 @@ if keyboard_check_pressed(ord("Z")) {
 				obj_player.state = states.normal
 				obj_player.hsp = 0
 				obj_player.vsp = 0
-				event_perform_object(obj_player,ev_outside,0)
+				with obj_player
+					{
+					for (var i = 0; i < instance_number(obj_plrtransition); i++) {
+						var daTrans = instance_find(obj_plrtransition, i)
+						if daTrans.doorindex == "A" {
+							self.x = daTrans.x
+							self.y = daTrans.y
+						}
+					}
+				}
 			}
 			instance_destroy(self)
 			break;

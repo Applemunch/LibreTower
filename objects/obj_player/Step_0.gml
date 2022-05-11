@@ -45,6 +45,7 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 				default:
 					global.targetDest = possibleDoor.targetDest
 					room_goto(possibleDoor.targetRoom)
+					changeState(states.normal, true) // reset the player state
 					break;
 			}
 		}
@@ -56,18 +57,18 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 			scr_playsound(holdingUp ? sfx_hjump : sfx_jump)
 			vsp -= 9 + 1 * holdingUp
 			onground = false
-			changeSprite(spr_player_fall)
+			if state == states.normal changeSprite(spr_player_fall)
 		}
 	}
 	
-	if keyboard_check(vk_shift) {
-		if state != states.stunned and state != states.run and state != states.runturn {
+	if keyboard_check(vk_shift) and !place_meeting(x + image_xscale, y, obj_solid) {
+		if !crouched and state != states.stunned and state != states.run and state != states.runturn {
 			changeState(states.run)
 		}
 	}
 	
 	if keyboard_check_pressed(ord("X")) {
-		if state != states.stunned and state != states.grab and state != states.run {
+		if !crouched and state != states.stunned and state != states.grab and state != states.run and state != states.runturn {
 			statetimer = 45
 			changeState(states.grab)
 			scr_playsound(sfx_grab, true)
@@ -87,10 +88,15 @@ if canmove and keyboard_check_pressed(ord("C")) and state != states.taunt {
 	alarm[0] = 30
 }
 
-if state != states.ouch and place_meeting(x,y, obj_hurtblock) {
+if state != states.ouch and place_meeting(x,y, obj_hurtblock) and !invuln {
 	hurtplayer(-6 * image_xscale, -4, true)
 }
 
 if keyboard_check_pressed(vk_escape) {
 	instance_create_layer(0,0,"Instances",obj_pause)
+}
+
+if state != states.ouch and invulm_timer > 0 {
+	invulm_timer -= 1
+	if invulm_timer <= 0 invuln = false
 }

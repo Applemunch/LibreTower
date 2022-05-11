@@ -10,3 +10,5 @@ global.timer = [2, 30]
 panictimer = 60
 panictimespent = 0 // used for wobble shader
 prevpanic = global.panic
+
+//global.particle_falling = part_system_create()

@@ -1,6 +1,8 @@
-if instance_exists(obj_player) {
-	if global.timer[0] + global.timer[1] <= 0 obj_player.idlemode = 1
+if instance_exists(obj_player) { // should this be optimized?
+	if obj_player.crouched obj_player.idlemode = 3
+	else if global.timer[0] + global.timer[1] <= 0 obj_player.idlemode = 1
 	else if obj_player.inventory == invstuff.gun obj_player.idlemode = 2
+	else obj_player.idlemode = 0
 }
 
 // panic shake
