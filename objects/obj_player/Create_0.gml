@@ -19,6 +19,7 @@ enum states {
 	grab,
 	run,
 	runturn,
+	superjump,
 	taunt,
 	ouch
 }

@@ -27,7 +27,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "essential",
-    "path": "folders/Objects/transition/essential.yy",
+    "path": "folders/Objects/essential.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_control",

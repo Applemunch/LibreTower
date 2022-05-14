@@ -18,6 +18,9 @@ switch state
 	case states.runturn:
 		scr_plr_runturn()
 		break;
+	case states.superjump:
+		scr_plr_superjump()
+		break;
 }
 
 
@@ -51,7 +54,7 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		}
 	}
 
-	if keyboard_check_pressed(ord("Z")) {
+	if keyboard_check_pressed(ord("Z")) and state != states.superjump {
 		if onground {
 			var holdingUp = crouched ? 0 : keyboard_check(vk_up)
 			scr_playsound(holdingUp ? sfx_hjump : sfx_jump)
@@ -62,13 +65,13 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 	}
 	
 	if keyboard_check(vk_shift) and !place_meeting(x + image_xscale, y, obj_solid) {
-		if !crouched and state != states.stunned and state != states.run and state != states.runturn {
+		if !crouched and state != states.stunned and state != states.run and state != states.runturn and state != states.superjump {
 			changeState(states.run)
 		}
 	}
 	
 	if keyboard_check_pressed(ord("X")) {
-		if !crouched and state != states.stunned and state != states.grab and state != states.run and state != states.runturn {
+		if !crouched and state != states.stunned and state != states.grab and state != states.run and state != states.runturn and state != states.superjump {
 			statetimer = 45
 			changeState(states.grab)
 			scr_playsound(sfx_grab, true)

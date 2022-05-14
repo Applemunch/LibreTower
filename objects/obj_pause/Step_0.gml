@@ -13,11 +13,15 @@ if keyboard_check_pressed(ord("Z")) {
 					room_goto(agm_1)
 					isValid = true
 					break;
+				case entrance_1: case entrance_2: case entrance_3:
+					room_goto(entrance_1)
+					isValid = true
+					break;
 			}
 			if !isValid exit;
 			global.collect = 0
 			global.targetDest = "A"
-			ds_list_clear(global.dslist)
+			scr_cleardslists()
 			if instance_exists(obj_player) {
 				obj_player.state = states.normal
 				obj_player.hsp = 0
@@ -40,6 +44,24 @@ if keyboard_check_pressed(ord("Z")) {
 				game_restart()
 			} else {
 				room_goto(hubroom)
+				global.collect = 0
+				global.targetDest = "A"
+				scr_cleardslists()
+				if instance_exists(obj_player) {
+					obj_player.hsp = 0
+					obj_player.vsp = 0
+					with obj_player
+					{
+						changeState(states.normal)
+						for (var i = 0; i < instance_number(obj_plrtransition); i++) {
+							var daTrans = instance_find(obj_plrtransition, i)
+							if daTrans.doorindex == "A" {
+								self.x = daTrans.x
+								self.y = daTrans.y
+							}
+						}
+					}
+				}
 				instance_destroy(self)
 			}
 			break;

@@ -1,2 +1,1 @@
-targetRoom = entrance_1
-targetDest = "B"
+targetRoom = entrance_3

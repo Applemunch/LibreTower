@@ -7,6 +7,9 @@ global.collect = 0
 global.panic = false
 global.timer = [2, 30]
 
+global.tiledestroy_rooms = ds_list_create() // stores rooms
+global.tiledestroy_locations = ds_list_create() // stores 2-index arrays with tile locations
+
 panictimer = 60
 panictimespent = 0 // used for wobble shader
 prevpanic = global.panic

@@ -24,24 +24,36 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"75336f97-ac41-4b69-ada8-dc4ee0f8a6f3","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"75336f97-ac41-4b69-ada8-dc4ee0f8a6f3","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":{"name":"26c750b2-6783-4496-8842-4a3c76dfdd9d","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"75336f97-ac41-4b69-ada8-dc4ee0f8a6f3","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"c71fd6df-9ec6-474c-bd76-b5783248bc75","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"c71fd6df-9ec6-474c-bd76-b5783248bc75","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":{"name":"dd72dec0-a9bd-48cd-92c5-085cd56a5fec","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"c71fd6df-9ec6-474c-bd76-b5783248bc75","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"391b5b9e-df1b-4e83-88b9-80b8ceddebf7","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"391b5b9e-df1b-4e83-88b9-80b8ceddebf7","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":{"name":"dd72dec0-a9bd-48cd-92c5-085cd56a5fec","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"391b5b9e-df1b-4e83-88b9-80b8ceddebf7","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f8ab932a-8f3c-4911-8b56-e0e30040b881","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f8ab932a-8f3c-4911-8b56-e0e30040b881","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":{"name":"dd72dec0-a9bd-48cd-92c5-085cd56a5fec","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"f8ab932a-8f3c-4911-8b56-e0e30040b881","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"0fee6e16-b426-4165-885a-af2d146dcd65","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"0fee6e16-b426-4165-885a-af2d146dcd65","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"LayerId":{"name":"dd72dec0-a9bd-48cd-92c5-085cd56a5fec","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","name":"0fee6e16-b426-4165-885a-af2d146dcd65","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_tutorialboard","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 0.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
+    "length": 4.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"27aa6aa9-7ffe-4f9e-8ef9-270e9bac375f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"75336f97-ac41-4b69-ada8-dc4ee0f8a6f3","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"c11b542b-4795-42f5-a114-0f4d4f31580f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"c71fd6df-9ec6-474c-bd76-b5783248bc75","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"3d64bcdf-6f75-40d3-aa82-5cc0d45c0d40","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"391b5b9e-df1b-4e83-88b9-80b8ceddebf7","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"3a91515c-b2ef-4075-a0d9-7a817b2519a3","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f8ab932a-8f3c-4911-8b56-e0e30040b881","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"1b0a1c17-9b7c-444c-badb-1cbbfd288911","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0fee6e16-b426-4165-885a-af2d146dcd65","path":"sprites/spr_tutorialboard/spr_tutorialboard.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -65,7 +77,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"26c750b2-6783-4496-8842-4a3c76dfdd9d","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"dd72dec0-a9bd-48cd-92c5-085cd56a5fec","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
