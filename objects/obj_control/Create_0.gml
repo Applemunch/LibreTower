@@ -15,3 +15,14 @@ panictimespent = 0 // used for wobble shader
 prevpanic = global.panic
 
 //global.particle_falling = part_system_create()
+
+if debug lastkey = noone
+
+#region enums
+
+enum afterimages {
+	perpendicular,
+	stationary
+}
+
+#endregion

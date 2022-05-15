@@ -52,7 +52,7 @@ function scr_plr_grab() {
 	if thing != noone {
 		switch thing.object_index
 		{
-			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable:
 				var thing2 = ds_list_create()
 				instance_place_list(x + hsp, y, obj_destructible, thing2, true)
 				if ds_list_size(thing2) != 0 {
@@ -103,7 +103,7 @@ function scr_plr_run() {
 	if thing != noone {
 		switch thing.object_index
 		{
-			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable:
 				if abs(hsp) < 12 {
 					instance_place(x + statevars[0], y, obj_destructible).hp -= 1
 					stunplayer()
@@ -163,8 +163,10 @@ function scr_plr_run() {
 		statevars[0] = 11 // has to be 11 to prevent instant superjump nullification
 		statevars[1] = false
 		changeState(states.superjump, false)
+		scr_playsound(sfx_sjump_prep)
 		statevars[2] = 0
 		hsp = 0
+		scr_afterimages(afterimages.perpendicular, 5, 0)
 		exit;
 	}
 	if !keyboard_check(vk_shift) {
@@ -175,7 +177,7 @@ function scr_plr_run() {
 	if statevars[2] <= 0 {
 		if onground scr_playsound(sfx_footstep)
 		/* if abs(statevars[0]) >= 12 and statevars[3] == 0 {
-			scr_playsound(sfx_maxspeed)
+			scr_afterimages(afterimages.perpendicular, 0, 5)
 			statevars[3] = true
 		} */
 		statevars[2] = 35
@@ -227,11 +229,12 @@ function scr_plr_superjump() {
 	statevar 0 is for the initial timer
 	statevar 1 is a debounce for the superjump start
 	*/
+	sprite_index = statevars[1] ? spr_player_superjump : spr_player_sjump_prep
 	var thing = instance_place(x, y - 1, obj_solid)
 	if thing != noone {
 		switch thing.object_index
 		{
-			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable:
 				thing.hp -= 1
 				break;
 			case obj_solid: case obj_toughblock:
@@ -240,9 +243,15 @@ function scr_plr_superjump() {
 				exit;
 		}
 	}
+	
+	if statevars[1] and statevars[2] <= 0 {
+		changeState(states.normal)
+		exit;
+	}
+	
 	if statevars[0] <= 1 and statevars[1] == false {
 		vsp = -12
-		scr_playsound(sfx_hjump)
+		scr_playsound(sfx_superjump)
 		canmove = true
 		statevars[1] = true
 		statevars[2] = 16
@@ -252,10 +261,6 @@ function scr_plr_superjump() {
 		vsp = -statevars[2]
 		statevars[2] -= 0.5
 	}
-	
-	if statevars[1] and statevars[2] <= 0 changeState(states.normal)
-	
-	sprite_index = statevars[1] ? spr_player_superjump : spr_player_hjump_prep
 }
 #endregion
 

@@ -64,7 +64,7 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		}
 	}
 	
-	if keyboard_check(vk_shift) and !place_meeting(x + image_xscale, y, obj_solid) {
+	if onground and keyboard_check(vk_shift) and !place_meeting(x + image_xscale, y, obj_solid) {
 		if !crouched and state != states.stunned and state != states.run and state != states.runturn and state != states.superjump {
 			changeState(states.run)
 		}

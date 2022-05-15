@@ -6,7 +6,7 @@ canmove = true
 dogravity = true
 
 walkspeed = 0.3
-maxspeed = 6
+maxspeed = 7
 idlemode = 0 // 0 = normal, 1 = hurt, 2 = panic (UNUSED), 3 = crouched
 
 statevars = array_create(32) // if you want to add or change a player state and it has a variable, chuck it here
@@ -49,4 +49,9 @@ function changeSprite(input) {
 function changeState(input, resetvars = true) {
 	state = input
 	if resetvars statevars = array_create(32)
+}
+
+if debug {
+	showcol = true
+	showdebug = true
 }
