@@ -25,7 +25,8 @@ switch state
 
 
 mask_index = crouched ? spr_player_crouchmask : spr_player_mask
-walkspeed = 0.3 / (crouched + 1)
+walkspeed = 0.4 / (crouched + 1)
+maxspeed = 7 / (crouched + 1)
 if dogravity {
 	onground = place_meeting(x, y + 1, obj_solid)
 
@@ -36,7 +37,7 @@ if dogravity {
 }
 
 if canmove { // disable moving, jumping, grabbing, and entering doors
-	if keyboard_check_pressed(vk_up) {
+	if scr_buttoncheck_pressed(vk_up, gp_padu) {
 		var possibleDoor = instance_place(x,y,obj_door)
 		if possibleDoor {
 			switch possibleDoor.object_index
@@ -54,9 +55,9 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		}
 	}
 
-	if keyboard_check_pressed(ord("Z")) and state != states.superjump {
+	if scr_buttoncheck_pressed(ord("Z"), gp_face3) and state != states.superjump {
 		if onground {
-			var holdingUp = crouched ? 0 : keyboard_check(vk_up)
+			var holdingUp = crouched ? 0 : scr_buttoncheck(vk_up, gp_padu)
 			scr_playsound(holdingUp ? sfx_hjump : sfx_jump)
 			vsp -= 9 + 1 * holdingUp
 			onground = false
@@ -64,13 +65,13 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		}
 	}
 	
-	if onground and keyboard_check(vk_shift) and !place_meeting(x + image_xscale, y, obj_solid) {
-		if !crouched and state != states.stunned and state != states.run and state != states.runturn and state != states.superjump {
+	if onground and scr_buttoncheck(vk_shift, gp_shoulderrb) and !place_meeting(x + image_xscale, y, obj_solid) {
+		if !crouched and state != states.stunned and state != states.run and state != states.runturn and state != states.superjump and state != states.grab {
 			changeState(states.run)
 		}
 	}
 	
-	if keyboard_check_pressed(ord("X")) {
+	if scr_buttoncheck_pressed(ord("X"), gp_face4) {
 		if !crouched and state != states.stunned and state != states.grab and state != states.run and state != states.runturn and state != states.superjump {
 			statetimer = 45
 			changeState(states.grab)
@@ -95,7 +96,7 @@ if state != states.ouch and place_meeting(x,y, obj_hurtblock) and !invuln {
 	hurtplayer(-6 * image_xscale, -4, true)
 }
 
-if keyboard_check_pressed(vk_escape) {
+if scr_buttoncheck_pressed(vk_escape, gp_start) {
 	instance_create_layer(0,0,"Instances",obj_pause)
 }
 

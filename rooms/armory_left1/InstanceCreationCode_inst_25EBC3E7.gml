@@ -1,0 +1,1 @@
+targetRoom = armory_left2

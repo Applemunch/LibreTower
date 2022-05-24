@@ -11,11 +11,14 @@ function scr_plr_normal() {
 		hsp = 0
 		changeSprite(spr_player_hjump_prep)
 	} else {
-		if keyboard_check(vk_left) or keyboard_check(vk_right) {
-			if !keyboard_check(vk_right) - keyboard_check(vk_left) == 0 {
-				hsp = clamp(hsp + walkspeed * ( keyboard_check(vk_right) - keyboard_check(vk_left) ), -maxspeed, maxspeed)
+		if scr_buttoncheck(vk_left, gp_padl) or scr_buttoncheck(vk_right, gp_padr) {
+			var movecalc = scr_buttoncheck(vk_right, gp_padr) - scr_buttoncheck(vk_left, gp_padl)
+			if movecalc != 0 {
+				hsp = clamp(hsp + walkspeed * movecalc, -maxspeed, maxspeed)
+				if image_xscale <= -1 and hsp > 0 hsp = 0
+				if image_xscale >= 1 and hsp < 0 hsp = 0
 				changeSprite(spr_player_move)
-				image_xscale = keyboard_check(vk_right) ? 1 : -1
+				image_xscale = scr_buttoncheck(vk_right, gp_padr) ? 1 : -1
 			}
 		} else {
 			hsp = 0
@@ -33,14 +36,17 @@ function scr_plr_normal() {
 				case 3:
 					changeSprite(spr_player_crouchidle)
 					break;
+				case 4:
+					changeSprite(spr_player_panicidle)
+					break;
 			}
 		}
 	}
 	if !onground {
 		changeSprite(spr_player_fall)
 	}
-	if !keyboard_check(vk_down) and instance_position(x, y - 36, obj_solid) exit; // don't crouch
-	crouched = keyboard_check(vk_down)
+	if !scr_buttoncheck(vk_down, gp_padd) and instance_position(x, y - 36, obj_solid) exit; // don't crouch
+	crouched = scr_buttoncheck(vk_down, gp_padd)
 }
 #endregion
 
@@ -52,7 +58,7 @@ function scr_plr_grab() {
 	if thing != noone {
 		switch thing.object_index
 		{
-			case obj_destructible: case obj_destroyable: case obj_bigdestroyable:
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
 				var thing2 = ds_list_create()
 				instance_place_list(x + hsp, y, obj_destructible, thing2, true)
 				if ds_list_size(thing2) != 0 {
@@ -103,7 +109,7 @@ function scr_plr_run() {
 	if thing != noone {
 		switch thing.object_index
 		{
-			case obj_destructible: case obj_destroyable: case obj_bigdestroyable:
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
 				if abs(hsp) < 12 {
 					instance_place(x + statevars[0], y, obj_destructible).hp -= 1
 					stunplayer()
@@ -119,7 +125,7 @@ function scr_plr_run() {
 				}
 				ds_list_destroy(thing2)
 				break;
-			case obj_toughblock:
+			case obj_toughblock: case obj_secrettough:
 				if abs(hsp) < 12 {
 					if abs(statevars[0]) >= 12 { // if running at full speed, stun
 						stunplayer()
@@ -150,16 +156,16 @@ function scr_plr_run() {
 				exit;
 		}
 	}
-	if keyboard_check_pressed(vk_left) and image_xscale == 1
-	or keyboard_check_pressed(vk_right) and image_xscale == -1 {
-		statevars[1] = 45
+	if scr_buttoncheck(vk_left, gp_padl) and image_xscale == 1
+	or scr_buttoncheck(vk_right, gp_padr) and image_xscale == -1 {
+		statevars[1] = 35
 		changeState(states.runturn, false)
 		scr_playsound(sfx_runturn)
 		statevars[2] = 0
 		statevars[3] = 0
 		exit;
 	}
-	if keyboard_check(vk_up) and onground and abs(statevars[0]) >= 12 {
+	if scr_buttoncheck(vk_up, gp_padu) and onground and abs(statevars[0]) >= 12 {
 		statevars[0] = 11 // has to be 11 to prevent instant superjump nullification
 		statevars[1] = false
 		changeState(states.superjump, false)
@@ -169,7 +175,7 @@ function scr_plr_run() {
 		scr_afterimages(afterimages.perpendicular, 5, 0)
 		exit;
 	}
-	if !keyboard_check(vk_shift) {
+	if !scr_buttoncheck(vk_shift, gp_shoulderrb) {
 		hsp = 0
 		statevars[3] = 0
 		changeState(states.normal)
@@ -190,6 +196,7 @@ function scr_plr_run() {
 function scr_plr_runturn() {
 	changeSprite(spr_player_runturn)
 	if statevars[1] > 0 statevars[1] -= 1
+	if image_index >= 3 image_index = 1
 	if statevars[1] <= 0 {
 		image_xscale = -image_xscale
 		changeState(states.run, false)
@@ -202,12 +209,15 @@ function scr_plr_runturn() {
 
 #region hurt
 function scr_plr_hurt() {
+	if invuln exit;
 	sprite_index = spr_player_hurt
 	if onground vsp = -3
 	statetimer -= 1
 	if statetimer <= 0 {
 		changeState(states.normal)
 		canmove = true
+		invuln = true
+		invulm_timer = 30
 	}
 }
 #endregion
@@ -234,7 +244,7 @@ function scr_plr_superjump() {
 	if thing != noone {
 		switch thing.object_index
 		{
-			case obj_destructible: case obj_destroyable: case obj_bigdestroyable:
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
 				thing.hp -= 1
 				break;
 			case obj_solid: case obj_toughblock:
@@ -271,7 +281,12 @@ function hurtplayer(sethsp = -6 * image_xscale, setvsp = -4, removepoints = fals
 	canmove = false
 	changeState(states.ouch)
 	statetimer = 90
-	if removepoints global.collect = max(0, global.collect - 100)
+	if removepoints {
+		global.collect = max(0, global.collect - 100)
+		repeat(10) {
+			
+		}
+	}
 }
 
 function stunplayer(sethsp = -2 * image_xscale, setvsp = -1, time = 30) {

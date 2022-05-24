@@ -4,5 +4,3 @@ stepcode = noone
 alpha = 1
 color = c_white
 duration = 40
-
-alarm[0] = duration

@@ -5,9 +5,59 @@ switch curmenu
 {
 	case menutype.options:
 		var theStuff = [
+			"Video",
+			"Audio",
+			"Effects",
+			"Back"
+		]
+		for (var i = 0; i < array_length(theStuff); i++) {
+			draw_set_color(select == i ? c_red : c_white)
+			draw_text(480, 260 + 32 * i, theStuff[i])
+		}
+		break;
+	case menutype.options_video:
+		var screenres
+		switch global.resolution
+		{
+			case 1: default:
+				screenres = "960x540"
+				break;
+			case 2:
+				screenres = "1280x720"
+				break;
+			case 3:
+				screenres = "1600x900"
+				break;
+			case 4:
+				screenres = "1920x1080"
+				break;
+		}
+		var theStuff = [
+			"Fullscreen: " + string(global.fullscreen),
+			"Screen Resolution: " + screenres,
+			"Back"
+		]
+		for (var i = 0; i < array_length(theStuff); i++) {
+			draw_set_color(select == i ? c_red : c_white)
+			draw_text(480, 260 + 32 * i, theStuff[i])
+		}
+		break;
+	case menutype.options_audio:
+		var theStuff = [
 			"Sound Volume: " + string(global.sfxvol),
 			"Music Volume: " + string(global.musvol),
-			"Fullscreen: " + string(global.fullscreen),
+			"Back"
+		]
+		for (var i = 0; i < array_length(theStuff); i++) {
+			draw_set_color(select == i ? c_red : c_white)
+			draw_text(480, 260 + 32 * i, theStuff[i])
+		}
+		break;
+	case menutype.options_fx:
+		var theStuff = [
+			"Particles: " + string(global.particles),
+			"Panic Shake: " + string(global.panicshake),
+			"Use Gamepads: " + string(global.gamepad),
 			"Back"
 		]
 		for (var i = 0; i < array_length(theStuff); i++) {

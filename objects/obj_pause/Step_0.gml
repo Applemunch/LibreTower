@@ -1,4 +1,4 @@
-if keyboard_check_pressed(ord("Z")) {
+if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 	switch select
 	{
 		case 0:
@@ -68,8 +68,8 @@ if keyboard_check_pressed(ord("Z")) {
 	}
 }
 
-if keyboard_check_pressed(vk_up) select -= 1
-if keyboard_check_pressed(vk_down) select += 1
+if scr_buttoncheck_pressed(vk_up, gp_padu) select -= 1
+if scr_buttoncheck_pressed(vk_down, gp_padd)  select += 1
 
 if select < 0 select = selmax
 if select > selmax select = 0

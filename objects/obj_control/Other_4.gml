@@ -1,4 +1,5 @@
 if layer_get_id("Tiles_1") != -1 {
+	global.tileset = layer_get_id("Tiles_1")
 	with obj_solid {
 		switch object_index
 		{
@@ -7,6 +8,7 @@ if layer_get_id("Tiles_1") != -1 {
 		}
 	}
 }
+didpanicsound = global.panic
 
 if global.panic exit;
 var music_choice = -1

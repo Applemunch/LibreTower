@@ -2,11 +2,12 @@ if instance_exists(obj_player) { // should this be optimized?
 	if obj_player.crouched obj_player.idlemode = 3
 	else if global.timer[0] + global.timer[1] <= 0 obj_player.idlemode = 1
 	else if obj_player.inventory == invstuff.gun obj_player.idlemode = 2
+	else if global.panic obj_player.idlemode = 4
 	else obj_player.idlemode = 0
 }
 
 // panic shake
-if global.panic {
+if global.panic and global.panicshake {
 	panictimespent += 0.5
 	view_yport[0] = random_range(-1 * (panictimespent / 2000), 1 * (panictimespent / 2000))	
 }
@@ -20,6 +21,11 @@ if global.timer[0] + global.timer[1] <= 0 {
 if global.panic
 {
 	scr_playmusic(d_escape)
+	if !didpanicsound {
+		var snd = scr_playsound(sfx_escapeon, false, true)
+		audio_sound_gain(snd, 0.4, 0)
+		didpanicsound = true
+	}
 	panictimer -= 1
 	if panictimer <= 0 {
 		global.timer[1] -= 1

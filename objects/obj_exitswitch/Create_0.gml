@@ -7,6 +7,5 @@ function toggleExitSwitch() {
 	global.panic = true
 	image_index = toggled ? 1 : 0
 	//obj_panicblock.swapActive() //FIX THE DAMN ESCAPE BLOCKS
-	scr_playsound(sfx_escapeon)
 	ds_list_add(global.dslist, self.id)
 }
