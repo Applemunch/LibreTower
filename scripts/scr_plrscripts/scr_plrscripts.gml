@@ -275,16 +275,21 @@ function scr_plr_superjump() {
 #endregion
 
 function hurtplayer(sethsp = -6 * image_xscale, setvsp = -4, removepoints = false) {
-	scr_playsound(sfx_hurt)
-	vsp = setvsp
-	hsp = sethsp
-	canmove = false
-	changeState(states.ouch)
-	statetimer = 90
-	if removepoints {
-		global.collect = max(0, global.collect - 100)
-		repeat(10) {
+	if obj_player.invuln or obj_player.state == states.ouch {
+		exit;
+	}
+	with obj_player {
+		scr_playsound(sfx_hurt)
+		vsp = setvsp
+		hsp = sethsp
+		canmove = false
+		changeState(states.ouch)
+		statetimer = 90
+		if removepoints {
+			global.collect = max(0, global.collect - 100)
+			/*repeat(10) {
 			
+			}*/
 		}
 	}
 }

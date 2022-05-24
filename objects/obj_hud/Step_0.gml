@@ -19,3 +19,7 @@ if instance_exists(obj_roomtitle) {
 } else {
 	if timerpos > 16 timerpos -= 1
 }
+
+if panictime_color > 0 {
+	panictime_color = clamp(panictime_color - 15 + (panictime_color / 100), 0, 255)
+}

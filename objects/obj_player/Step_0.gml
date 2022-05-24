@@ -81,7 +81,7 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 
 }
 
-if canmove and keyboard_check_pressed(ord("C")) and state != states.taunt {
+if canmove and scr_buttoncheck_pressed(ord("C"), gp_face1) and state != states.taunt {
 	canmove = false
 	dogravity = false
 	prevstate = state

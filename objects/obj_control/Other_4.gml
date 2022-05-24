@@ -27,6 +27,9 @@ switch room
 	case agm_secret1:
 		music_choice = d_agmsecret
 		break;
+	case armory_1: case armory_left1: case armory_left2: case armory_left3: case armory_right1: case armory_right2: case armory_right3: case armory_right4:
+		music_choice = d_military
+		break;
 }
 
 if music_choice != -1 scr_playmusic(music_choice)

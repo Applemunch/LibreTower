@@ -1,7 +1,7 @@
 ds_list_add(global.dslist, self.id)
 with instance_create_layer(x,y,"Instances",obj_particle) {
 	depth = -1
-	sprite_index = other.sprite_index
+	sprite_index = other.sprite_ded
 	image_index = other.image_index
 	image_xscale = other.image_xscale
 	image_yscale = other.image_yscale

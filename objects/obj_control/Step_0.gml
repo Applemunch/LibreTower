@@ -14,7 +14,6 @@ if global.panic and global.panicshake {
 
 if global.timer[0] + global.timer[1] <= 0 {
 	global.collect = max(global.collect - 1, 0)
-	exit;
 }
 
 // panic literally everything else
@@ -28,6 +27,12 @@ if global.panic
 	}
 	panictimer -= 1
 	if panictimer <= 0 {
+		panictimer = 60
+		if global.timer[0] < 1 and instance_exists(obj_hud) {
+			obj_hud.panictime_color = 255
+			audio_sound_gain(scr_playsound(sfx_clock, false, true), 2.25 * global.sfxvol, 0)
+		}
+		if global.timer[0] + global.timer[1] <= 0 exit;
 		global.timer[1] -= 1
 		if global.timer[1] < 0 {
 			/*
@@ -38,7 +43,6 @@ if global.panic
 			global.timer[0] -= 1
 			global.timer[1] = 59
 		}
-		panictimer = 60
 	}
 }
 

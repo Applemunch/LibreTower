@@ -115,9 +115,9 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 if scr_buttoncheck_pressed(vk_up, gp_padu) select -= 1
 if scr_buttoncheck_pressed(vk_down, gp_padd)  select += 1
 
-if keyboard_check(vk_left) or keyboard_check(vk_right)
+if scr_buttoncheck(vk_left, gp_padl) or scr_buttoncheck(vk_right, gp_padr)
 {
-	if keyboard_check(vk_shift) or curmenu == menutype.options_video and select == 1 {
+	if scr_buttoncheck(vk_shift, gp_shoulderrb) or curmenu == menutype.options_video and select == 1 {
 		if !keyboard_check_pressed(vk_left) and !keyboard_check_pressed(vk_right) exit;
 	}
 	switch curmenu
@@ -127,10 +127,10 @@ if keyboard_check(vk_left) or keyboard_check(vk_right)
 			switch select
 			{
 				case 0: // sfx volume
-					global.sfxvol = changeOpt("SoundVol", clamp(global.sfxvol + keyboard_check(vk_right) - keyboard_check(vk_left), 0, 100) )
+					global.sfxvol = changeOpt("SoundVol", clamp(global.sfxvol + scr_buttoncheck(vk_right, gp_padr) - scr_buttoncheck(vk_left, gp_padl), 0, 100) )
 					break;
 				case 1: // music volume
-					global.musvol = changeOpt("MusicVol", clamp(global.musvol + keyboard_check(vk_right) - keyboard_check(vk_left), 0, 100) )
+					global.musvol = changeOpt("MusicVol", clamp(global.musvol + scr_buttoncheck(vk_right, gp_padr) - scr_buttoncheck(vk_left, gp_padl), 0, 100) )
 					break;
 			}
 			break;
@@ -140,7 +140,7 @@ if keyboard_check(vk_left) or keyboard_check(vk_right)
 			switch select
 			{
 				case 1:
-					global.resolution += keyboard_check(vk_right) - keyboard_check(vk_left)
+					global.resolution += scr_buttoncheck(vk_right, gp_padr) - scr_buttoncheck(vk_left, gp_padl)
 					if global.resolution < 1 global.resolution = 4
 					if global.resolution > 4 global.resolution = 1
 					changeOpt("Resolution", global.resolution)
