@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_genemy_idle",
-    "path": "sprites/spr_genemy_idle/spr_genemy_idle.yy",
+    "name": "spr_plrtransition",
+    "path": "sprites/spr_plrtransition/spr_plrtransition.yy",
   },
   "solid": false,
   "visible": true,

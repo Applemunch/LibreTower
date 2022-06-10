@@ -33,6 +33,15 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 				case 1:
 					curmenu = menutype.options_audio
 					select = 0
+					preview_music = choose(
+						d_agmsecret,
+						d_agm,
+						d_entrance,
+						d_hub,
+						d_military,
+					)
+					scr_playmusic(preview_music)
+					preview_sfx()
 					break;
 				case 2:
 					curmenu = menutype.options_fx
@@ -68,6 +77,9 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 				case 2:
 					curmenu = menutype.options
 					select = 0
+					audio_stop_sound(global.music)
+					preview_soundtimer = 0
+					audio_stop_sound(preview_sound)
 					break;
 			}
 			break;
@@ -112,8 +124,8 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 	switchOpts()
 }
 
-if scr_buttoncheck_pressed(vk_up, gp_padu) select -= 1
-if scr_buttoncheck_pressed(vk_down, gp_padd)  select += 1
+if scr_buttoncheck_pressed(vk_up, gp_padu) select--
+if scr_buttoncheck_pressed(vk_down, gp_padd) select++
 
 if scr_buttoncheck(vk_left, gp_padl) or scr_buttoncheck(vk_right, gp_padr)
 {
@@ -131,6 +143,7 @@ if scr_buttoncheck(vk_left, gp_padl) or scr_buttoncheck(vk_right, gp_padr)
 					break;
 				case 1: // music volume
 					global.musvol = changeOpt("MusicVol", clamp(global.musvol + scr_buttoncheck(vk_right, gp_padr) - scr_buttoncheck(vk_left, gp_padl), 0, 100) )
+					audio_sound_gain(global.music, global.musvol / 100, 0)
 					break;
 			}
 			break;
@@ -161,3 +174,8 @@ if scr_buttoncheck(vk_left, gp_padl) or scr_buttoncheck(vk_right, gp_padr)
 
 if select < 0 select = selectmax
 if select > selectmax select = 0
+
+if preview_soundtimer > 0 preview_soundtimer--
+if curmenu == menutype.options_audio and preview_soundtimer == 0 {
+	preview_sfx()
+}

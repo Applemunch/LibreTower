@@ -24,6 +24,31 @@ select = 0
 selectmax = array_length(curopt) - 1
 draw_set_font(fnt_textregular)
 
+#region preview vars
+/*
+these variables are used for the previews you get when changing options
+*/
+
+preview_music = d_agmsecret
+preview_sound = -1
+
+preview_soundtimer = 0
+function preview_sfx() {
+	preview_sound = choose(
+		sfx_jump,
+		sfx_hjump,
+		sfx_bump,
+		sfx_collect,
+		sfx_detrixie,
+		sfx_grab,
+		sfx_hurt,
+	)
+	scr_playsound(preview_sound)
+	preview_soundtimer = irandom_range(30, 50)
+}
+
+#endregion
+
 global.savedataname = "LibreTower"
 function changeOpt(name, value) {
 	ini_open(global.savedataname + ".ini")
@@ -68,8 +93,7 @@ function switchOpts() {
 			curopt = options_main
 			break;
 		case menutype.options: case menutype.options_video: case menutype.options_audio: case menutype.options_fx:
-			selectmax = array_length(curopt) - 1
-			exit;
+			break;
 		case menutype.cleardata:
 			curopt = options_yesno
 			break;
@@ -77,4 +101,12 @@ function switchOpts() {
 	selectmax = array_length(curopt) - 1
 }
 
-shiftdebounce = false
+function getToggled(input, isCustom = false, custom_on = "On", custom_off = "Off") {
+	if isCustom {
+		return input ? custom_on : custom_off
+	} else {
+		return input ? "On" : "Off"
+	}
+}
+
+image_speed = 0.25

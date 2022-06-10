@@ -8,5 +8,5 @@ switch object_index // doing it this way's more optimized than the "add amount v
 		break;
 }
 audio_play_sound(sfx_collect,0,false)
-ds_list_add(global.dslist, self.id)
+array_push(global.dslist, self.id)
 instance_destroy(self)

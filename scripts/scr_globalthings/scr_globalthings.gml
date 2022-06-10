@@ -25,7 +25,7 @@ function scr_buttoncheck_pressed() {
 }
 
 function scr_cleardslists() {
-	ds_list_clear(global.dslist)
+	global.dslist = []
 }
 
 function scr_afterimages(type, _hsp, _vsp) {
@@ -35,6 +35,7 @@ function scr_afterimages(type, _hsp, _vsp) {
 			with instance_create_layer(x, y, "Instances", obj_particle) {
 				sprite_index = other.sprite_index
 				image_index = other.image_index
+				image_speed = 0
 				image_xscale = other.image_xscale
 				image_yscale = other.image_yscale
 				hspeed = _hsp
@@ -44,7 +45,8 @@ function scr_afterimages(type, _hsp, _vsp) {
 			}
 			with instance_create_layer(x, y, "Instances", obj_particle) {
 				sprite_index = other.sprite_index
-				iamge_index = other.image_index
+				image_index = other.image_index
+				image_speed = 0
 				image_xscale = other.image_xscale
 				image_yscale = other.image_yscale
 				hspeed = -_hsp
@@ -56,7 +58,8 @@ function scr_afterimages(type, _hsp, _vsp) {
 		case afterimages.stationary:
 			with instance_create_layer(x, y, "Instances", obj_particle) {
 				sprite_index = other.sprite_index
-				iamge_index = other.image_index
+				image_index = other.image_index
+				image_speed = 0
 				hspeed = _hsp
 				vspeed = _vsp
 				alpha = 0.6
@@ -64,5 +67,51 @@ function scr_afterimages(type, _hsp, _vsp) {
 			}
 			break;
 	}
+}
 
+function scr_resetlevel() {
+	global.collect = 0
+	global.targetDest = "A"
+	global.panic = false
+	global.timer = [2, 30]
+	global.detrixies = [0, 0, 0, 0, 0]
+	global.secrets = []
+	if instance_exists(obj_player) {
+		obj_player.hsp = 0
+		obj_player.vsp = 0
+		with obj_player
+		{
+			changeState(states.normal, true)
+			for (var i = 0; i < instance_number(obj_plrtransition); i++)
+			{
+				var daTrans = instance_find(obj_plrtransition, i)
+				if daTrans.doorindex == "A"
+				{
+					self.x = daTrans.x
+					self.y = daTrans.y
+				}
+			}
+		}
+	}
+	audio_sound_set_track_position(global.music, 0) // pseudo-restart music
+	scr_cleardslists()
+}
+
+function scr_getallofvalue(array, value) {
+	if typeof(array) != "array" exit;
+	var instances = 0
+	for (var i = 0; i < array_length(array); i++) {
+		if array[i] == value {
+			instances += 1
+		}
+	}
+	return instances
+}
+
+function array_find(array, value) {
+	if typeof(array) != "array" exit;
+	for (var i = 0; i < array_length(array); i++) {
+		if array[i] == value return true
+	}
+	return false
 }

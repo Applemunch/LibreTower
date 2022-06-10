@@ -1,5 +1,3 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_plrscripts(){
 	// do nothing hAHAHAH
 }
@@ -7,6 +5,7 @@ function scr_plrscripts(){
 #region normal
 function scr_plr_normal() {
 	if !canmove exit;
+	image_speed = 0.25
 	if keyboard_check(vk_up) and onground {
 		hsp = 0
 		changeSprite(spr_player_hjump_prep)
@@ -53,6 +52,7 @@ function scr_plr_normal() {
 #region grab
 function scr_plr_grab() {
 	changeSprite(spr_player_dash)
+	image_speed = 0.25
 	hsp = 8 * image_xscale
 	var thing = instance_place(x + hsp, y, obj_solid)
 	if thing != noone {
@@ -100,24 +100,30 @@ function scr_plr_run() {
 	statevar 1 is for the run turn
 	statevar 2 is for the step sounds
 	statevar 3 is for the max speed sound and effects
+	statevar 4 will be for the jump debounce, if false then do the jump amin
+	
+	to-do: make it so that if you jump--and ONLY when you jump--will the player's sprite do a jump
 	*/
-	changeSprite(spr_player_run)
-	statevars[0] += 0.25 * image_xscale
-	statevars[0] = clamp(statevars[0], -12, 12)
-	statevars[2] -= 1 * (abs(hsp) / 1.75)
-	var thing = instance_place(x + statevars[0], y, obj_solid)
+	image_speed = 0.30 * clamp(statevars[0] / 12, 0.2, 1)
+	changeSprite(statevars[0] >= 12 ? spr_player_runmax : spr_player_run)
+	statevars[0] += 0.25
+	statevars[0] = clamp(statevars[0], 0, 12)
+	statevars[2] -= (statevars[0] / 1.75)
+	var thing = instance_place(x + statevars[0] * image_xscale, y, obj_solid)
 	if thing != noone {
 		switch thing.object_index
 		{
 			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
-				if abs(hsp) < 12 {
-					instance_place(x + statevars[0], y, obj_destructible).hp -= 1
+				if statevars[0] < 12 {
+					var xcalc = x + statevars[0] * image_xscale
+					if place_meeting(xcalc, y, obj_destructible)
+						instance_place(xcalc, y, obj_destructible).hp -= 1
 					stunplayer()
 					statevars[0] = 0
 					break;
 				}
 				var thing2 = ds_list_create()
-				instance_place_list(x + statevars[0], y, obj_destructible, thing2, true)
+				instance_place_list(x + statevars[0] * image_xscale, y, obj_destructible, thing2, true)
 				if ds_list_size(thing2) != 0 {
 					for (var i = 0; i < ds_list_size(thing2); i++) {
 						ds_list_find_value(thing2,i).hp -= 1
@@ -126,8 +132,8 @@ function scr_plr_run() {
 				ds_list_destroy(thing2)
 				break;
 			case obj_toughblock: case obj_secrettough:
-				if abs(hsp) < 12 {
-					if abs(statevars[0]) >= 12 { // if running at full speed, stun
+				if statevars[0] < 12 {
+					if statevars[0] >= 12 { // if running at full speed, stun
 						stunplayer()
 						statevars[0] = 0
 					} else {
@@ -137,7 +143,7 @@ function scr_plr_run() {
 					break;
 				}
 				var thing2 = ds_list_create()
-				instance_place_list(x + statevars[0], y, obj_toughblock, thing2, true)
+				instance_place_list(x + statevars[0] * image_xscale, y, obj_toughblock, thing2, true)
 				if ds_list_size(thing2) != 0 {
 					for (var i = 0; i < ds_list_size(thing2); i++) {
 						ds_list_find_value(thing2,i).hp -= 1
@@ -146,7 +152,7 @@ function scr_plr_run() {
 				ds_list_destroy(thing2)
 				break;
 			case obj_solid:
-				if abs(statevars[0]) >= 12 { // if running at full speed, stun
+				if statevars[0] >= 12 { // if running at full speed, stun, and regret your life choices
 					stunplayer()
 					statevars[0] = 0
 				} else {
@@ -165,7 +171,7 @@ function scr_plr_run() {
 		statevars[3] = 0
 		exit;
 	}
-	if scr_buttoncheck(vk_up, gp_padu) and onground and abs(statevars[0]) >= 12 {
+	if scr_buttoncheck(vk_up, gp_padu) and onground and statevars[0] >= 12 {
 		statevars[0] = 11 // has to be 11 to prevent instant superjump nullification
 		statevars[1] = false
 		changeState(states.superjump, false)
@@ -188,28 +194,29 @@ function scr_plr_run() {
 		} */
 		statevars[2] = 35
 	}
-	hsp = statevars[0]
+	hsp = statevars[0] * image_xscale
 }
 #endregion
 
 #region runturn
 function scr_plr_runturn() {
+	image_speed = 0.25
 	changeSprite(spr_player_runturn)
 	if statevars[1] > 0 statevars[1] -= 1
 	if image_index >= 3 image_index = 1
 	if statevars[1] <= 0 {
 		image_xscale = -image_xscale
 		changeState(states.run, false)
-		statevars[0] *= -1
 		exit;
 	}
-	hsp = statevars[0]
+	hsp = statevars[0] * image_xscale
 }
 #endregion
 
 #region hurt
 function scr_plr_hurt() {
 	if invuln exit;
+	image_speed = 0.25
 	sprite_index = spr_player_hurt
 	if onground vsp = -3
 	statetimer -= 1
@@ -225,6 +232,7 @@ function scr_plr_hurt() {
 #region stun
 function scr_plr_stun() {
 	sprite_index = spr_player_hurt
+	image_speed = 0.25
 	statetimer -= 1
 	if statetimer <= 0 {
 		changeState(states.normal)
@@ -240,6 +248,7 @@ function scr_plr_superjump() {
 	statevar 1 is a debounce for the superjump start
 	*/
 	sprite_index = statevars[1] ? spr_player_superjump : spr_player_sjump_prep
+	image_speed = 0.25
 	var thing = instance_place(x, y - 1, obj_solid)
 	if thing != noone {
 		switch thing.object_index
@@ -274,6 +283,51 @@ function scr_plr_superjump() {
 }
 #endregion
 
+#region wallrun (commented)
+/*
+function scr_plr_wallrun() { // this gives me bad memories
+	hsp = 0
+	if !place_meeting(x + image_xscale, y - 1, obj_solid) {
+		changeState(states.run, false)
+		vsp = 0
+		if image_xscale == 1 statevars[0] *= -1
+		exit;
+	}
+	var thing = instance_place(x, y + statevars[0], obj_solid)
+	if thing != noone {
+		switch thing.object_index
+		{
+			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
+				var thing2 = ds_list_create()
+				instance_place_list(x, y + statevars[0], obj_destructible, thing2, true)
+				if ds_list_size(thing2) != 0 {
+					for (var i = 0; i < ds_list_size(thing2); i++) {
+						ds_list_find_value(thing2,i).hp -= 1
+					}
+				}
+				ds_list_destroy(thing2)
+				break;
+			case obj_toughblock: case obj_secrettough: case obj_solid: case obj_slope:
+				stunplayer()
+				statevars[0] = 0
+				exit;
+		}
+	}
+	
+	if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
+		var svar = statevars[0]
+		changeState(states.run, false)
+		hsp = svar * -image_xscale
+		vsp = -3
+		image_xscale = -image_xscale
+		if image_xscale == 1 statevars[0] *= -1
+		exit;
+	}
+	vsp = statevars[0]
+}
+*/
+#endregion
+
 function hurtplayer(sethsp = -6 * image_xscale, setvsp = -4, removepoints = false) {
 	if obj_player.invuln or obj_player.state == states.ouch {
 		exit;
@@ -295,9 +349,12 @@ function hurtplayer(sethsp = -6 * image_xscale, setvsp = -4, removepoints = fals
 }
 
 function stunplayer(sethsp = -2 * image_xscale, setvsp = -1, time = 30) {
-	vsp = setvsp
-	hsp = sethsp
-	canmove = false
-	changeState(states.stunned)
-	statetimer = time
+	with obj_player {
+		scr_playsound(sfx_bump)
+		vsp = setvsp
+		hsp = sethsp
+		canmove = false
+		changeState(states.stunned)
+		statetimer = time
+	}
 }

@@ -1,4 +1,4 @@
-ds_list_add(global.dslist, self.id)
+array_push(global.dslist, self.id)
 with instance_create_layer(x,y,"Instances",obj_particle) {
 	depth = -1
 	sprite_index = other.sprite_ded

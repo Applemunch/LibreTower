@@ -1,6 +1,6 @@
+if !visible exit;
 draw_set_font(global.ltfont)
 draw_text(812, 64, string(global.collect))
-
 
 draw_set_halign(fa_center)
 draw_set_font(fnt_textregular)
@@ -19,19 +19,19 @@ if displaymessage {
 }
 draw_set_halign(fa_left)
 
-switch hudstate
+switch hudstate // the order of cases matters
 {
-	case 0:
-		draw_sprite(global.panic ? spr_plrhud_panic : spr_plrhud,0,64,64)
-		break;
-	case 1:
+	case hudstates.hurt:
 		draw_sprite(spr_plrhud_hurt,0,64,64)
 		break;
-	case 2:
+	case hudstates.yippee:
 		draw_sprite(spr_plrhud_yippee,0,64,64)
 		break;
-	case 3:
+	case hudstates.dash:
 		draw_sprite(spr_plrhud_dash,0,64,64)
+		break;
+	case hudstates.normal:
+		draw_sprite(global.panic ? spr_plrhud_panic : spr_plrhud,0,64,64)
 		break;
 }
 if hudstate != hudstates.normal hudstate_timer -= 1

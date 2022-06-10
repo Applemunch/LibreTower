@@ -20,6 +20,7 @@ enum states {
 	grab,
 	run,
 	runturn,
+	wallrun,
 	superjump,
 	taunt,
 	ouch
@@ -31,12 +32,14 @@ statetimer = 0 // used to switch between certain states
 invuln = false
 invulm_timer = 0
 
+/*
 enum invstuff {
 	none,
 	gun,
 	melee
 }
 inventory = invstuff.none
+*/
 
 depth = -2
 image_speed = 0.25
@@ -49,6 +52,7 @@ function changeSprite(input) {
 
 function changeState(input, resetvars = true) {
 	state = input
+	image_index = 0 // just for good measure
 	if resetvars statevars = array_create(32)
 }
 

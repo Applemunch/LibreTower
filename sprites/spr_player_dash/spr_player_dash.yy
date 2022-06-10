@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "player",
-    "path": "folders/Sprites/player.yy",
+    "name": "attacking",
+    "path": "folders/Sprites/player/attacking.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_player_dash",

@@ -9,7 +9,7 @@ if instance_exists(obj_player)
 			hudstate = hudstates.hurt
 			break;
 		default:
-			hudstate = hudstates.normal
+			if hudstate_timer <= 0 hudstate = hudstates.normal
 			break;
 	}
 }
@@ -21,5 +21,7 @@ if instance_exists(obj_roomtitle) {
 }
 
 if panictime_color > 0 {
-	panictime_color = clamp(panictime_color - 15 + (panictime_color / 100), 0, 255)
+	panictime_color = clamp(panictime_color - 15 + (panictime_color >> 6), 0, 255)
+	// this gets an approximation of the value needed. APPROXIMATION. of the value needed
+	// basically, 255 >> 6 is basically 255 / 100 rounded, that's what I based this off of
 }

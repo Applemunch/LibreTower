@@ -55,14 +55,30 @@ switch curmenu
 		break;
 	case menutype.options_fx:
 		var theStuff = [
-			"Particles: " + string(global.particles),
-			"Panic Shake: " + string(global.panicshake),
-			"Use Gamepads: " + string(global.gamepad),
+			"Particles: " + getToggled(global.particles),
+			"Panic Shake: " + getToggled(global.panicshake),
+			"Use Gamepads: " + getToggled(global.gamepad),
 			"Back"
 		]
 		for (var i = 0; i < array_length(theStuff); i++) {
 			draw_set_color(select == i ? c_red : c_white)
 			draw_text(480, 260 + 32 * i, theStuff[i])
+		}
+		switch select
+		{
+			case 0:
+				if global.particles {
+					draw_sprite_ext(spr_player_sjump_prep, 1, 660, 300, 2, 2, 0, c_purple, 0.5)
+					draw_sprite_ext(spr_player_sjump_prep, 1, 820, 300, 2, 2, 0, c_silver, 0.5)	
+				}
+				draw_sprite_ext(spr_player_sjump_prep, 2, 740, 300, 2, 2, 0, c_white, 1)
+				draw_text(480, 508, "Toggle particles. Can improve performance and visibility.")
+				break;
+			case 1:
+				var shake = 2 * global.panicshake
+				draw_sprite_ext(global.panicshake ? spr_player_panicidle : spr_player_idle, -1, 740, 300 + irandom_range(-shake, shake), 2, 2, 0, c_white, 1)
+				draw_text(480, 508, "Toggles the screen-shake during Panic. Can prevent motion sickness when off.")
+				break;
 		}
 		break;
 	case menutype.cleardata:

@@ -5,7 +5,7 @@ function scr_plr_collision(){
 		while place_meeting(x + sign(hsp), y, obj_slope)
 			if instance_place(x + sign(hsp), y, obj_slope).image_xscale == self.image_xscale
 			or instance_place(x + sign(hsp), y, obj_slope).image_xscale != self.image_xscale {
-				y -= 1
+				y--
 			}
 		
 			vsp = 0

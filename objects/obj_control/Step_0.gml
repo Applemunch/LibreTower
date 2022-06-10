@@ -1,7 +1,7 @@
 if instance_exists(obj_player) { // should this be optimized?
 	if obj_player.crouched obj_player.idlemode = 3
 	else if global.timer[0] + global.timer[1] <= 0 obj_player.idlemode = 1
-	else if obj_player.inventory == invstuff.gun obj_player.idlemode = 2
+	//else if obj_player.inventory == invstuff.gun obj_player.idlemode = 2
 	else if global.panic obj_player.idlemode = 4
 	else obj_player.idlemode = 0
 }
@@ -9,10 +9,11 @@ if instance_exists(obj_player) { // should this be optimized?
 // panic shake
 if global.panic and global.panicshake {
 	panictimespent += 0.5
-	view_yport[0] = random_range(-1 * (panictimespent / 2000), 1 * (panictimespent / 2000))	
+	var thing = panictimespent / 2000
+	view_yport[0] = random_range(-thing, thing)	
 }
 
-if global.timer[0] + global.timer[1] <= 0 {
+if global.collect > 0 and global.timer[0] + global.timer[1] <= 0 {
 	global.collect = max(global.collect - 1, 0)
 }
 
@@ -25,12 +26,12 @@ if global.panic
 		audio_sound_gain(snd, 0.4, 0)
 		didpanicsound = true
 	}
-	panictimer -= 1
+	panictimer--
 	if panictimer <= 0 {
 		panictimer = 60
 		if global.timer[0] < 1 and instance_exists(obj_hud) {
 			obj_hud.panictime_color = 255
-			audio_sound_gain(scr_playsound(sfx_clock, false, true), 2.25 * global.sfxvol, 0)
+			audio_sound_gain(scr_playsound(sfx_clock, false, true), 2.25 * (global.sfxvol * 0.01), 0)
 		}
 		if global.timer[0] + global.timer[1] <= 0 exit;
 		global.timer[1] -= 1
@@ -64,20 +65,13 @@ if debug and keyboard_check_pressed(vk_anykey)
 			}
 			break;
 		case vk_f3:
-			instance_deactivate_object(obj_hud)
+			obj_hud.visible = !obj_hud.visible
 			if instance_exists(obj_roomtitle) instance_destroy(obj_roomtitle)
 			with instance_create_layer(0, 0, "Instances", obj_roomtitle) {
-				text = "HUD DISABLED"
+				text = "HUD VISIBILITY TOGGLED"
 			}
 			break;
 		case vk_f4:
-			instance_activate_object(obj_hud)
-			if instance_exists(obj_roomtitle) instance_destroy(obj_roomtitle)
-			with instance_create_layer(0, 0, "Instances", obj_roomtitle) {
-				text = "HUD ENABLED"
-			}
-			break;
-		case vk_f5:
 			obj_player.showdebug = !obj_player.showdebug
 			var addstring = obj_player.showdebug ? "VISIBLE" : "HIDDEN"
 			if instance_exists(obj_roomtitle) instance_destroy(obj_roomtitle)

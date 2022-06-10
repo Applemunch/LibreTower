@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_genemy_idle",
-    "path": "sprites/spr_genemy_idle/spr_genemy_idle.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

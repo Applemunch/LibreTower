@@ -11,5 +11,5 @@ while noParallax == false {
 		noParallax = true
 		exit;
 	}
-	i += 1
+	i++
 }

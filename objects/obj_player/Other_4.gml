@@ -44,10 +44,22 @@ switch room
 	case entrance_2:
 		titlethingy.text = "Get some speed!"
 		break;
+	case entrance_3:
+		titlethingy.text = "Crate Nesting Area"
+		break;
+	case entrance_4:
+		titlethingy.text = "This place'll look familiar in a moment."
+		break;
+	case entrance_5:
+		titlethingy.text = "How High Can You Get?"
+		break;
 	#endregion
 	#region agm facility
 	case agm_1:
 		titlethingy.text = "AGM's Deepest Pit of Hell"
+		global.rank_req = 1100
+		global.secret_req = 2
+		global.detrixie_req = 2
 		break;
 	case agm_2:
 		titlethingy.text = "Strangely Under Construction"
@@ -64,8 +76,14 @@ switch room
 	case agm_secret1:
 		titlethingy.text = "Factorial 3 and 4 Spare"
 		break;
-	case armory_1:
-		titlethingy.text = "It's The Damn Military!"
+	case agm_secret2:
+		titlethingy.text = "Bunny Hop"
 		break;
 	#endregion
+	#region armory
+	case armory_1:
+		titlethingy.text = "Uh-Oh, It's The Military!"
+		break;
+	#endregion
+	case endscreen: instance_destroy(obj_roomtitle) break; // No more obj_roomtitle. It's gone. Go home, it's over.
 }

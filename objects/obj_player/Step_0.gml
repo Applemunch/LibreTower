@@ -44,12 +44,19 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 			{
 				case obj_exitdoor:
 					if !global.panic exit;
-					game_restart()
+					global.panic = false
+					global.timer = [2, 30]
+					global.targetDest = "A"
+					changeState(states.normal, true)
+					obj_hud.visible = false
+					obj_player.canmove = false
+					room_goto(endscreen)
 					break;
 				default:
 					global.targetDest = possibleDoor.targetDest
 					room_goto(possibleDoor.targetRoom)
 					changeState(states.normal, true) // reset the player state
+					if possibleDoor.object_index == obj_leveldoor and possibleDoor.resetlvl scr_resetlevel()
 					break;
 			}
 		}

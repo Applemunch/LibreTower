@@ -6,13 +6,13 @@ TO DO:
 * Finish AGM Facility
 * Finish and polish player sprites
 * Add better assets for AGM Facility's background
-* Add a tileset for AGM Facility
+* Add a tileset for AGM Facility (DONE)
 * Add/Replace the following music:
 	* AGM Facility song (uses Freedoom MAP09 music)
 	* Pizzascape Replacement song
-	* Ancient Cheese Replacement song
-	* Secret songs for the 3 aforementioned levels
+	* Armory song (DONE, kind of)
+	* Secret songs for the 3 aforementioned levels (DONE for AGM and Armory)
 	* Title screen music
-	* Probably a better escape theme (keep the harp leitmotif please)
+	* Probably a better escape theme (keep the harp leitmotif please) [DONE]
 * Make concepts/sprites for enemies
 * Make concepts/sprites for the Knight transformation, as well as any others that are to be made... or needed

@@ -9,6 +9,7 @@ var plrsight = collision_line(x - 250, y, x + 250, y, obj_player, false, true)
 if plrsight {
 	if plrsight.state == states.run and abs(plrsight.hsp) >= 12 {
 		sprite_index = sprite_scared
+		image_index = sign(obj_player.x - x)
 		scared = true
 		hsp = 0
 	} else scared = false
@@ -20,3 +21,5 @@ if place_meeting(x,y,obj_player) {
 		instance_destroy(self)
 	}
 }
+
+if !scared sprite_index = sprite_idle

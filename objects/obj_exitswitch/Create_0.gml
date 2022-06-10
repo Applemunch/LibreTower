@@ -6,7 +6,7 @@ settime = [2, 30]
 
 function toggleExitSwitch() {
 	toggled = true
-	ds_list_add(global.dslist, self.id)
+	array_push(global.dslist, self.id)
 	if global.panic exit;
 	global.panic = true
 	global.timer = settime
