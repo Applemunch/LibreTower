@@ -1,0 +1,92 @@
+These are mostly taken from GitHUb. Some listed changes be from the game builds instead.
+
+LT Build 1 (4/2/2022):
+- Initial release, no changes
+
+LT Build 2 (4/9/2022):
+- Added an AGM Facility background from Freedoom
+- HUD and slopes
+- Room "titles" added, appear when entering rooms
+- Player sprite additions for dashing, taunting, and high-jumping
+- Fixed an issue where jumping sometimes doesn't display the falling graphic
+- Added player crouching.
+- Added destroyable blocks
+- AGM Facility's 2nd and 3rd rooms are now finished
+
+LT Build 3 (5/3/2022?):
+- Title screen revamp
+- Escape theme remade for better quality
+- Enemies WIP
+- Changed sprites for destructible blocks
+- New player idle sprite by Beebawp
+- Added a running move for the player
+- Out-of-bounds failsafe added (stuns the player and moves them to the last door they went to)
+- Finished AGM Facility, background remade and a few bonuses added
+- Heavily work-in-progress Armory level added
+- Collectible sprites are now colored and properly palletted
+- Hurt blocks added, cause player to be stunned and lose points when hit
+- Tilesets added
+
+LT Build 4 (5/14/2022):
+- Extra debug options added
+- Player changes:
+	- Superjump move added! Get to max speed and press UP to do a boosted superjump
+	- Walkspeed cap bumped to 7 from the original 6
+- Running can now only be started when on the ground
+- New .exe icon
+- Solid color changed to be in-line with palette
+- Tutorial level added
+- HUD sprites changed to accentuate hidden outlines more
+- Particles and afterimages added
+
+LT Build 5 (6/10/2022):
+- AGM Facility rooms fully tiled and given a unique tileset
+- Titlescreen revamped with a remade options menu and a new background
+	- Audio options now does a dynamic preview of music and SFX
+	- Effects options show specific changes
+- Platforms, Detrixues, and new enemy types added
+- Player changes:
+	- Player now has sprite for full speed when running
+	- Turning while running takes less time
+	- Added sprites for crouching amd taunting
+	- Player no longer slides when sharply turning directions while walking
+	- Very short period of invulnerability added when hurt. to prevent softlocks
+- Armory level now has music
+- Pause menu options now work mostly as intended
+- Backgrounds added for the Hub and secret areas
+- Minor sprite changes, like panic block sprites
+- Room changes:
+	- All rooms are given a unique tileset
+	- AGM_3 has a solid under the slope now, and a Detrixie was added
+	- AGM_4 was made a little wider. No other changes here, I swear.
+	- AGM_5's exit was moved back, destructibles were added
+	- Armory level has levels for the left and right sections, mainly for futureproofing
+	- ARMORY_1's hallways now lead to separate rooms
+	- HUBROOM changed to accomodate more doors
+	- Entrance finished..?
+- Ranks added! Play like absolute dogshit, and you'll get a corresponding rank.
+- Gamepad support! Can be toggled in options to play with only the keyboard
+- Added a Secret tileset and changed up the tileset templates to add slopes and platforms, among other changes
+
+LT Build 6 (TBD):
+- Room changes:
+	- Added decor in AGM_3. Honestly, it shows how I feel about room size.
+	- AGM_5 completely redone
+	- ENTRANCE_5 changed to not be frustrating to get through
+	- Numerous changes to ARMORY_LEFT2
+	- Tutorial level changed to add an extra room and (re-)add billboards into rooms
+	- Some existing rooms were altered to contain platforms
+	- Enlongated AGM_SECRET2 to allow the player to smoothly dash through
+- Many tweaks to player
+- Stabber given a functional hitbox
+- Fixed some controls not being available for gamepads
+- Extra (toggleable) particle effects added for killing enemies or being hit.
+- Minor change to collision code, in hope for mild performance improvement
+- Added an object that unveils tiles when touched by the player, properly named "obj_tileshow"
+- Fixed secret destroyables not hiding tiles when going back to the room they were destroyed in
+- Coding changes:
+	- Functions for hurting and stunning player now are reliant on who calls them
+	- Unused variables and functions commented out
+	- Speaking of comments, more are added across the code to help people understand which does what
+	- Room transition fixes... probably?
+- Added a debug multi-tool, replacing F1

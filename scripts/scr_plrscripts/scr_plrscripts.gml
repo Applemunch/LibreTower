@@ -68,7 +68,7 @@ function scr_plr_grab() {
 				}
 				ds_list_destroy(thing2)
 				break;
-			case obj_solid:
+			case obj_solid: case obj_panicblock: case obj_panicblock_alt:
 				statetimer = 0
 				changeState(states.normal)
 				exit;
@@ -151,7 +151,7 @@ function scr_plr_run() {
 				}
 				ds_list_destroy(thing2)
 				break;
-			case obj_solid:
+			case obj_solid: case obj_panicblock: case obj_panicblock_alt:
 				if statevars[0] >= 12 { // if running at full speed, stun, and regret your life choices
 					stunplayer()
 					statevars[0] = 0
@@ -162,16 +162,18 @@ function scr_plr_run() {
 				exit;
 		}
 	}
-	if scr_buttoncheck(vk_left, gp_padl) and image_xscale == 1
-	or scr_buttoncheck(vk_right, gp_padr) and image_xscale == -1 {
-		statevars[1] = 35
-		changeState(states.runturn, false)
-		scr_playsound(sfx_runturn)
-		statevars[2] = 0
-		statevars[3] = 0
-		exit;
+	if onground {
+		if scr_buttoncheck(vk_left, gp_padl) and image_xscale == 1
+		or scr_buttoncheck(vk_right, gp_padr) and image_xscale == -1 {
+			statevars[1] = 35
+			changeState(states.runturn, false)
+			scr_playsound(sfx_runturn)
+			statevars[2] = 0
+			statevars[3] = 0
+			exit;
+		}
 	}
-	if scr_buttoncheck(vk_up, gp_padu) and onground and statevars[0] >= 12 {
+	if onground and scr_buttoncheck(vk_up, gp_padu) and statevars[0] >= 12 {
 		statevars[0] = 11 // has to be 11 to prevent instant superjump nullification
 		statevars[1] = false
 		changeState(states.superjump, false)
@@ -209,7 +211,7 @@ function scr_plr_runturn() {
 		changeState(states.run, false)
 		exit;
 	}
-	hsp = statevars[0] * image_xscale
+	hsp = statevars[0] * image_xscale // lerp(hsp, 0, 0.02)
 }
 #endregion
 
@@ -224,7 +226,8 @@ function scr_plr_hurt() {
 		changeState(states.normal)
 		canmove = true
 		invuln = true
-		invulm_timer = 30
+		invulm_timer = 40
+		global.timeshurt++
 	}
 }
 #endregion
@@ -256,7 +259,7 @@ function scr_plr_superjump() {
 			case obj_destructible: case obj_destroyable: case obj_bigdestroyable: case obj_secretdestroyable:
 				thing.hp -= 1
 				break;
-			case obj_solid: case obj_toughblock:
+			case obj_solid: case obj_toughblock: case obj_panicblock: case obj_panicblock_alt:
 				hsp = 0
 				changeState(states.normal)
 				exit;
@@ -328,33 +331,28 @@ function scr_plr_wallrun() { // this gives me bad memories
 */
 #endregion
 
+// NOTE: in cases where this or "stunplayer()" are used, MAKE SURE THE PLAYER CALLS IT!
 function hurtplayer(sethsp = -6 * image_xscale, setvsp = -4, removepoints = false) {
-	if obj_player.invuln or obj_player.state == states.ouch {
-		exit;
-	}
-	with obj_player {
-		scr_playsound(sfx_hurt)
-		vsp = setvsp
-		hsp = sethsp
-		canmove = false
-		changeState(states.ouch)
-		statetimer = 90
-		if removepoints {
-			global.collect = max(0, global.collect - 100)
-			/*repeat(10) {
+	if invuln or state == states.ouch return;
+	scr_playsound(sfx_hurt)
+	vsp = setvsp
+	hsp = sethsp
+	canmove = false
+	changeState(states.ouch)
+	statetimer = 90
+	if removepoints {
+		global.collect = max(0, global.collect - 100)
+		/*repeat(10) {
 			
-			}*/
-		}
+		}*/
 	}
 }
 
 function stunplayer(sethsp = -2 * image_xscale, setvsp = -1, time = 30) {
-	with obj_player {
-		scr_playsound(sfx_bump)
-		vsp = setvsp
-		hsp = sethsp
-		canmove = false
-		changeState(states.stunned)
-		statetimer = time
-	}
+	scr_playsound(sfx_bump)
+	vsp = setvsp
+	hsp = sethsp
+	canmove = false
+	changeState(states.stunned)
+	statetimer = time
 }

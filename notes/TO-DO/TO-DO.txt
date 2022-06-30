@@ -1,18 +1,20 @@
 This is the Libre Tower TO-DO list, containing all of the things that need to be UNIQUELY recreated to be somewhat like the Sage 2019 demo.
+Some entries also contain to-dos for objects. This is simply to make finding issues or complaints easier.
 
 TO DO:
 * Add a Pizzascape replacement
 * Add an Ancient Cheese replacement [DONE in the form of the Armory]
-* Finish AGM Facility
+* Finish AGM Facility [basically DONE]
 * Finish and polish player sprites
 * Add better assets for AGM Facility's background
-* Add a tileset for AGM Facility (DONE)
+* Add a tileset for AGM Facility [DONE]
 * Add/Replace the following music:
 	* AGM Facility song (uses Freedoom MAP09 music)
 	* Pizzascape Replacement song
-	* Armory song (DONE, kind of)
-	* Secret songs for the 3 aforementioned levels (DONE for AGM and Armory)
+	* Armory song [DONE, kind of]
+	* Secret songs for the 3 aforementioned levels [DONE for AGM and Armory]
 	* Title screen music
 	* Probably a better escape theme (keep the harp leitmotif please) [DONE]
 * Make concepts/sprites for enemies
 * Make concepts/sprites for the Knight transformation, as well as any others that are to be made... or needed
+* obj_platform: Make it so that only the objects above it can collide with it

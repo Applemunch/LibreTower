@@ -11,5 +11,4 @@ function toggleExitSwitch() {
 	global.panic = true
 	global.timer = settime
 	image_index = toggled ? 1 : 0
-	//obj_panicblock.swapActive() //FIX THE DAMN ESCAPE BLOCKS
 }

@@ -1,4 +1,4 @@
-switch object_index // doing it this way's more optimized than the "add amount var" method
+switch object_index // doing it this way's less costly than the "add amount var" method
 {
 	case obj_collectible: default:
 		global.collect += 10

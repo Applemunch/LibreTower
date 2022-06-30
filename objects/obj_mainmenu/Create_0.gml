@@ -25,9 +25,7 @@ selectmax = array_length(curopt) - 1
 draw_set_font(fnt_textregular)
 
 #region preview vars
-/*
-these variables are used for the previews you get when changing options
-*/
+//these variables are used for the previews you get when changing options
 
 preview_music = d_agmsecret
 preview_sound = -1

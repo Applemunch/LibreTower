@@ -6,20 +6,18 @@ if instance_exists(obj_player) { // should this be optimized?
 	else obj_player.idlemode = 0
 }
 
-// panic shake
-if global.panic and global.panicshake {
-	panictimespent += 0.5
-	var thing = panictimespent / 2000
-	view_yport[0] = random_range(-thing, thing)	
-}
-
 if global.collect > 0 and global.timer[0] + global.timer[1] <= 0 {
 	global.collect = max(global.collect - 1, 0)
 }
 
-// panic literally everything else
+// panic
 if global.panic
 {
+	if global.panicshake {
+		panictimespent += 0.5
+		var thing = panictimespent / 2000
+		view_yport[0] = random_range(-thing, thing)		
+	}
 	scr_playmusic(d_escape)
 	if !didpanicsound {
 		var snd = scr_playsound(sfx_escapeon, false, true)
@@ -52,9 +50,35 @@ if debug and keyboard_check_pressed(vk_anykey)
 	switch keyboard_lastkey
 	{
 		case vk_f1:
-			var thing = get_integer("Set FPS:", 60)
-			if !thing thing = 60
-			game_set_speed(thing, gamespeed_fps)
+			var tthing = get_integer("LIBRE TOWER - Debug Multi-Tool\n Enter a number to perform an option\n1: Set FPS, 2: Set Player State, 3: Change Room", 0)
+			switch tthing
+			{
+				case 0: break;
+				case 1:
+					thing = get_integer("Set FPS:", 60)
+					if !thing thing = 60
+					game_set_speed(thing, gamespeed_fps)
+					break;
+				case 2:
+					if !instance_exists(obj_player) {
+						show_message("ERROR: There is no player!")
+						break;
+					}
+					thing = get_integer("Set Player State:", 0)
+					obj_player.state = thing
+					break;
+				case 3:
+					var _room = get_string("Enter the name of the room", "hubroom")
+					var door = get_string("Enter the door's index (A, B, C, D, etc)", "A")
+					var room_asset = asset_get_index(_room)
+					if !room_asset {
+						show_message("ERROR: Room doesn't exist!")
+						break;
+					}
+					global.targetDest = door
+					room_goto(room_asset)
+					break;
+			}
 			break;
 		case vk_f2:
 			obj_player.showcol = !obj_player.showcol

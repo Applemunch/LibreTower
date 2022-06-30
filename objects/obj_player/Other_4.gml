@@ -56,10 +56,10 @@ switch room
 	#endregion
 	#region agm facility
 	case agm_1:
-		titlethingy.text = "AGM's Deepest Pit of Hell"
-		global.rank_req = 1100
+		titlethingy.text = "AGM's Hellspawn Facility"
+		global.rank_req = 1120
 		global.secret_req = 2
-		global.detrixie_req = 2
+		global.detrixie_req = 3
 		break;
 	case agm_2:
 		titlethingy.text = "Strangely Under Construction"

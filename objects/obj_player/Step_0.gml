@@ -37,7 +37,7 @@ if dogravity {
 }
 
 if canmove { // disable moving, jumping, grabbing, and entering doors
-	if scr_buttoncheck_pressed(vk_up, gp_padu) {
+	if onground and scr_buttoncheck_pressed(vk_up, gp_padu) {
 		var possibleDoor = instance_place(x,y,obj_door)
 		if possibleDoor {
 			switch possibleDoor.object_index

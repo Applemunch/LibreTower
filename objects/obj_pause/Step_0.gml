@@ -13,7 +13,7 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 					room_goto(agm_1)
 					isValid = true
 					break;
-				case entrance_1: case entrance_2: case entrance_3:
+				case entrance_1: case entrance_2: case entrance_3: case entrance_4: case entrance_5:
 					room_goto(entrance_1)
 					isValid = true
 					break;

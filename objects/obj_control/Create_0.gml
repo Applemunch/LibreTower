@@ -1,4 +1,4 @@
-#macro debug false
+#macro debug true
 
 global.music = audio_play_sound(d_title,-1,true)
 global.ltfont = font_add_sprite_ext(spr_font,"1234567890",false,0)
@@ -13,10 +13,8 @@ global.detrixies = [0, 0, 0, 0, 0]
 global.secrets = [] // stores secret rooms the player visited
 
 panictimer = 60
-panictimespent = 0 // used for wobble shader
+panictimespent = 0 // used for screen shake
 didpanicsound = false
-
-//global.particle_falling = part_system_create()
 
 if debug lastkey = noone
 
@@ -64,4 +62,5 @@ S rank requirements are that you find every detrixie, find all the secrets, don'
 global.rank_req = 10000
 global.secret_req = 6
 global.detrixie_req = 5
+global.timeshurt = 0
 #endregion

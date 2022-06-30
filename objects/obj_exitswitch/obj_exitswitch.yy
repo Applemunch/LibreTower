@@ -30,8 +30,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "gameplay oriented",
+    "path": "folders/Objects/gameplay oriented.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_exitswitch",

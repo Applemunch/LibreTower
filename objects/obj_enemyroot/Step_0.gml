@@ -17,8 +17,8 @@ if plrsight {
 
 if place_meeting(x,y,obj_player) {
 	if obj_player.state == states.grab
-	or obj_player.state == states.run and abs(hsp) >= 12 {
-		instance_destroy(self)
+	or obj_player.state == states.run and abs(obj_player.hsp) >= 12 {
+		kill()
 	}
 }
 
