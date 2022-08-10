@@ -6,7 +6,7 @@ canmove = true
 dogravity = true
 //jumpbuffer = 40
 
-walkspeed = 0.4
+walkspeed = 0.8
 maxspeed = 7
 idlemode = 0 // 0 = normal, 1 = hurt, 2 = panic (UNUSED), 3 = crouched
 

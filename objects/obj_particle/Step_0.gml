@@ -3,4 +3,4 @@ if stepcode != noone {
 }
 
 duration -= 1
-if duration <= 0 instance_destroy(self)
+if duration <= 0 or killonanimend and image_index >= sprite_get_number(sprite_index) instance_destroy(self)

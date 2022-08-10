@@ -1,3 +1,3 @@
-targetRoom = hubroom
-msg_replace = "LEVEL 1"
+targetRoom = chateau_1
+msg_replace = "CURSED ENCLAVE"
 targetDest = "A"

@@ -4,3 +4,4 @@ stepcode = noone
 alpha = 1
 color = c_white
 duration = 40
+killonanimend = false

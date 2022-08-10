@@ -45,12 +45,13 @@ if global.panic
 	}
 }
 
-if debug and keyboard_check_pressed(vk_anykey)
+if keyboard_check_pressed(vk_anykey)
 {
+	if !debug exit;
 	switch keyboard_lastkey
 	{
 		case vk_f1:
-			var tthing = get_integer("LIBRE TOWER - Debug Multi-Tool\n Enter a number to perform an option\n1: Set FPS, 2: Set Player State, 3: Change Room", 0)
+			var tthing = get_integer("LIBRE TOWER - Debug Multi-Tool\n Enter a number to perform an option\n1: Set FPS, 2: Set Player State, 3: Change Room, 4: Change Player Int/Bool", 0)
 			switch tthing
 			{
 				case 0: break;
@@ -78,6 +79,16 @@ if debug and keyboard_check_pressed(vk_anykey)
 					global.targetDest = door
 					room_goto(room_asset)
 					break;
+				case 4:
+					if !instance_exists(obj_player) {
+						show_message("ERROR: There is no player!")
+						break;
+					}
+					thing = get_string("Enter the name of the INTEGER/BOOLEAN variable you'd like to change:", 0)
+					var thing2 = get_integer("Enter the new value:", 0)
+					if variable_instance_get(obj_player, thing) {
+						variable_instance_set(obj_player, thing, thing2)
+					}
 			}
 			break;
 		case vk_f2:

@@ -42,6 +42,7 @@ function scr_afterimages(type, _hsp, _vsp) {
 				vspeed = _vsp
 				alpha = 0.6
 				color = c_silver
+				duration = duration >> 2
 			}
 			with instance_create_layer(x, y, "Instances", obj_particle) {
 				sprite_index = other.sprite_index
@@ -53,6 +54,7 @@ function scr_afterimages(type, _hsp, _vsp) {
 				vspeed = -_vsp
 				alpha = 0.6
 				color = c_purple
+				duration = duration >> 2
 			}
 			break;
 		case afterimages.stationary:
@@ -60,10 +62,13 @@ function scr_afterimages(type, _hsp, _vsp) {
 				sprite_index = other.sprite_index
 				image_index = other.image_index
 				image_speed = 0
+				image_xscale = other.image_xscale
+				image_yscale = other.image_yscale
 				hspeed = _hsp
 				vspeed = _vsp
 				alpha = 0.6
 				color = c_silver
+				duration = duration >> 2
 			}
 			break;
 	}

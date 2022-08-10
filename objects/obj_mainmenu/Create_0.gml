@@ -60,8 +60,8 @@ if !file_exists(global.savedataname + ".ini") {
 	global.sfxvol = ini_write_real("Options","SoundVol",100)
 	global.musvol = ini_write_real("Options","MusicVol",100)
 	
-	global.particles = ini_write_real("Options","Particles",false)
-	global.panicshake = ini_write_real("Options","PanicShake",false)
+	global.particles = ini_write_real("Options","Particles",true)
+	global.panicshake = ini_write_real("Options","PanicShake",true)
 	
 	global.resolution = ini_write_real("Options","Resolution",1) // 1 is 960 x 540
 	global.fullscreen = ini_write_real("Options","Fullscreen",false)
@@ -73,8 +73,8 @@ if !file_exists(global.savedataname + ".ini") {
 	global.sfxvol = ini_read_real("Options","SoundVol",100)
 	global.musvol = ini_read_real("Options","MusicVol",100)
 	
-	global.particles = ini_read_real("Options","Particles",false)
-	global.panicshake = ini_read_real("Options","PanicShake",false)
+	global.particles = ini_read_real("Options","Particles",true)
+	global.panicshake = ini_read_real("Options","PanicShake",true)
 	
 	global.resolution = ini_read_real("Options","Resolution",1)
 	global.fullscreen = ini_read_real("Options","Fullscreen",false)

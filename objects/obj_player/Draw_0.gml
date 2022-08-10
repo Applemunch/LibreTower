@@ -1,3 +1,5 @@
+if !visible exit; // even when invisible, this still calls stuff. amazing game engine I tell ya
+
 if state == states.taunt draw_sprite(spr_flash, 0, x, y)
 var usingShader = false
 if invuln {

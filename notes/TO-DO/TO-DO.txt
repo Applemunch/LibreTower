@@ -17,4 +17,4 @@ TO DO:
 	* Probably a better escape theme (keep the harp leitmotif please) [DONE]
 * Make concepts/sprites for enemies
 * Make concepts/sprites for the Knight transformation, as well as any others that are to be made... or needed
-* obj_platform: Make it so that only the objects above it can collide with it
+* Embed platforms directly into the collision code

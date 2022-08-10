@@ -16,7 +16,10 @@ panictimer = 60
 panictimespent = 0 // used for screen shake
 didpanicsound = false
 
-if debug lastkey = noone
+if debug {
+	lastkey = noone
+	show_debug_overlay(true)
+}
 
 #region enums
 

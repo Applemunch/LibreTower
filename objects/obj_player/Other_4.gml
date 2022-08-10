@@ -54,6 +54,11 @@ switch room
 		titlethingy.text = "How High Can You Get?"
 		break;
 	#endregion
+	#region chateau
+	case chateau_1:
+		titlethingy.text = "Tower of Doom"
+		break;
+	#endregion
 	#region agm facility
 	case agm_1:
 		titlethingy.text = "AGM's Hellspawn Facility"
@@ -84,6 +89,14 @@ switch room
 	case armory_1:
 		titlethingy.text = "Uh-Oh, It's The Military!"
 		break;
+	case armory_left1:
+		titlethingy.text = "Into the Army Depths"
+		break;
+	case armory_left2:
+		titlethingy.text = "Not So OSHA Compliant Now"
+		break;
 	#endregion
 	case endscreen: instance_destroy(obj_roomtitle) break; // No more obj_roomtitle. It's gone. Go home, it's over.
 }
+
+// scr_playerspr()

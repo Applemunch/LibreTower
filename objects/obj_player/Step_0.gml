@@ -23,7 +23,6 @@ switch state
 		break;
 }
 
-
 mask_index = crouched ? spr_player_crouchmask : spr_player_mask
 walkspeed = 0.4 / (crouched + 1)
 maxspeed = 7 / (crouched + 1)
@@ -31,7 +30,7 @@ if dogravity {
 	onground = place_meeting(x, y + 1, obj_solid)
 
 	if !onground {
-		vsp += 0.35
+		vsp += 0.4
 	}
 	scr_plr_collision()
 }
@@ -39,26 +38,22 @@ if dogravity {
 if canmove { // disable moving, jumping, grabbing, and entering doors
 	if onground and scr_buttoncheck_pressed(vk_up, gp_padu) {
 		var possibleDoor = instance_place(x,y,obj_door)
+		var checkExit = true
 		if possibleDoor {
-			switch possibleDoor.object_index
-			{
-				case obj_exitdoor:
-					if !global.panic exit;
-					global.panic = false
-					global.timer = [2, 30]
-					global.targetDest = "A"
-					changeState(states.normal, true)
-					obj_hud.visible = false
-					obj_player.canmove = false
-					room_goto(endscreen)
-					break;
-				default:
-					global.targetDest = possibleDoor.targetDest
-					room_goto(possibleDoor.targetRoom)
-					changeState(states.normal, true) // reset the player state
-					if possibleDoor.object_index == obj_leveldoor and possibleDoor.resetlvl scr_resetlevel()
-					break;
-			}
+			global.targetDest = possibleDoor.targetDest
+			room_goto(possibleDoor.targetRoom)
+			changeState(states.normal, true) // reset the player state
+			if possibleDoor.object_index == obj_leveldoor and possibleDoor.resetlvl scr_resetlevel()
+			checkExit = false
+		}
+		if checkExit and place_meeting(x, y, obj_exitdoor) and global.panic {
+			global.panic = false
+			global.timer = [2, 30]
+			global.targetDest = "A"
+			changeState(states.normal, true)
+			obj_hud.visible = false
+			obj_player.canmove = false
+			room_goto(endscreen)		
 		}
 	}
 
@@ -66,7 +61,7 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		if onground {
 			var holdingUp = crouched ? 0 : scr_buttoncheck(vk_up, gp_padu)
 			scr_playsound(holdingUp ? sfx_hjump : sfx_jump)
-			vsp -= 9 + 1 * holdingUp
+			vsp -= 10 + 1.5 * holdingUp
 			onground = false
 			if state == states.normal changeSprite(spr_player_fall)
 		}

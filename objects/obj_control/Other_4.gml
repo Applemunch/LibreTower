@@ -27,6 +27,9 @@ switch room
 	case entrance_1: case entrance_2: case entrance_3:
 		music_choice = d_entrance
 		break;
+	case chateau_1:
+		music_choice = d_chateau
+		break;
 	case agm_1: case agm_2: case agm_3: case agm_4: case agm_5:
 		music_choice = d_agm
 		break;
