@@ -1,7 +1,7 @@
 {
   "resources": [
     {"id":{"name":"tutorial_4","path":"rooms/tutorial_4/tutorial_4.yy",},"order":2,},
-    {"id":{"name":"sfx_breakmetal","path":"sounds/sfx_breakmetal/sfx_breakmetal.yy",},"order":21,},
+    {"id":{"name":"Sound34","path":"sounds/Sound34/Sound34.yy",},"order":21,},
     {"id":{"name":"obj_bigdestroyable","path":"objects/obj_bigdestroyable/obj_bigdestroyable.yy",},"order":0,},
     {"id":{"name":"sfx_sjump_prep","path":"sounds/sfx_sjump_prep/sfx_sjump_prep.yy",},"order":12,},
     {"id":{"name":"obj_solid","path":"objects/obj_solid/obj_solid.yy",},"order":1,},

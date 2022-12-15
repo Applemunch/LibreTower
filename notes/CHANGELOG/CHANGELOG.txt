@@ -68,7 +68,7 @@ LT Build 5 (6/10/2022):
 - Gamepad support! Can be toggled in options to play with only the keyboard
 - Added a Secret tileset and changed up the tileset templates to add slopes and platforms, among other changes
 
-LT Build 6 (TBD):
+LT Build 6 (12/14/2022, yikes):
 - Room changes:
 	- Added decor in AGM_3. Honestly, it shows how I feel about room size.
 	- AGM_5 completely redone
@@ -95,4 +95,15 @@ LT Build 6 (TBD):
 - Fixed an oversight where the default options for Particles and Screen Shake would be off.
 - Sprite changes:
 	- Overhauled Panic Blocks, Exit Switch and the title.
+	- Finished and cleaned the walking animation
 - Platforms now are handled in the collision code; objects can be on a platform and still be able to pass through.
+- New taunt sound effect
+- Added an unused taunt back into the game
+- Destructibles can now produce debris when broken. Only works for the small ones so far.
+
+LT Build 6, Hotfix 1 (TBA)
+- Room changes:
+	- TUTORIAL_3 now has a player transition for coming back to it from later in the tutorial
+	- ARMORY's left side was given doors to go back after grabbing the key
+	- Added a solid to the roof of the first ARMORY level. Just incase.
+- 

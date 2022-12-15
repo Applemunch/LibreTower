@@ -14,7 +14,7 @@ switch state
 		if sight {
 			state = 1
 			statetimer = 40
-			image_xscale = sight.x > x ? 1 : -1
+			image_index = sign(sight.x - x)
 		}
 		break;
 	case 1:
