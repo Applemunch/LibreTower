@@ -90,7 +90,9 @@ LT Build 6 (TBD):
 	- Speaking of comments, more are added across the code to help people understand which does what
 	- Room transition fixes... probably?
 	- Fixed an issue where if certain objects are !visible, their Draw (GUI) events still call code
+	- Player stun state now allows for a custom sprite
 - Added a debug multi-tool, replacing F1
 - Fixed an oversight where the default options for Particles and Screen Shake would be off.
 - Sprite changes:
 	- Overhauled Panic Blocks, Exit Switch and the title.
+- Platforms now are handled in the collision code; objects can be on a platform and still be able to pass through.

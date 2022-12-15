@@ -20,6 +20,9 @@ switch room
 	#region tutorial
 	case tutorial_1:
 		titlethingy.text = "Learn to Libre Tower"
+		global.rank_req = 200
+		global.secret_req = 0
+		global.detrixie_req = 3
 		break;
 	case tutorial_2:
 		titlethingy.text = "Higher!"
@@ -94,6 +97,9 @@ switch room
 		break;
 	case armory_left2:
 		titlethingy.text = "Not So OSHA Compliant Now"
+		break;
+	case armory_left3:
+		titlethingy.text = "Give Me a Key!"
 		break;
 	#endregion
 	case endscreen: instance_destroy(obj_roomtitle) break; // No more obj_roomtitle. It's gone. Go home, it's over.

@@ -5,6 +5,7 @@
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": {
     "name": "spr_collect_1",
     "path": "sprites/spr_collect_1/spr_collect_1.yy",

@@ -17,6 +17,7 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 		global.targetDest = "A"
 		room_goto(other.levels[other.lvl_select][2])
 		changeState(states.normal, true)
+		visible = true
 		scr_resetlevel()
 	}
 	instance_destroy(self)

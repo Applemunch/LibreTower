@@ -6,15 +6,20 @@ global.dslist = [] // using a DS list was too buggy
 global.collect = 0
 global.panic = false
 global.timer = [2, 30]
+global.keys = 0
 
 global.tileset = noone // used for secret destructibles
 
 global.detrixies = [0, 0, 0, 0, 0]
-global.secrets = [] // stores secret rooms the player visited
+global.secrets = [] // stores secret rooms the player visited'
+
+global.camshake = [0, 0]
 
 panictimer = 60
 panictimespent = 0 // used for screen shake
 didpanicsound = false
+
+camxoffset = 0
 
 if debug {
 	lastkey = noone

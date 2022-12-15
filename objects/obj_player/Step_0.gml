@@ -27,7 +27,11 @@ mask_index = crouched ? spr_player_crouchmask : spr_player_mask
 walkspeed = 0.4 / (crouched + 1)
 maxspeed = 7 / (crouched + 1)
 if dogravity {
-	onground = place_meeting(x, y + 1, obj_solid)
+	onground = false
+	var findplatform = instance_place(x, y + 1, obj_platform)
+	var findsolid = place_meeting(x, y + 1, obj_solid)
+		
+	if findsolid or findplatform and bbox_bottom < findplatform.y + 1 onground = true
 
 	if !onground {
 		vsp += 0.4
@@ -91,7 +95,8 @@ if canmove and scr_buttoncheck_pressed(ord("C"), gp_face1) and state != states.t
 	sprite_index = spr_player_taunt
 	image_index = random_range(0, sprite_get_number(sprite_index))
 	image_speed = 0
-	alarm[0] = 30
+	scr_playsound(sfx_taunt, true)
+	alarm[0] = 25
 }
 
 if state != states.ouch and place_meeting(x,y, obj_hurtblock) and !invuln {

@@ -34,5 +34,6 @@ function kill() {
 			}
 		}
 	}
+	global.camshake[0] += 4
 	instance_destroy(self)
 }

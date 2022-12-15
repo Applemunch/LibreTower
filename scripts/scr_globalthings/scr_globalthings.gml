@@ -81,6 +81,7 @@ function scr_resetlevel() {
 	global.timer = [2, 30]
 	global.detrixies = [0, 0, 0, 0, 0]
 	global.secrets = []
+	global.keys = 0
 	if instance_exists(obj_player) {
 		obj_player.hsp = 0
 		obj_player.vsp = 0
@@ -98,6 +99,7 @@ function scr_resetlevel() {
 			}
 		}
 	}
+	if instance_exists(obj_thunder) instance_destroy(obj_thunder)
 	audio_sound_set_track_position(global.music, 0) // pseudo-restart music
 	scr_cleardslists()
 }

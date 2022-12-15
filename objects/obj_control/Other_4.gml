@@ -24,6 +24,9 @@ switch room
 	case hubroom:
 		music_choice = d_hub
 		break;
+	case tutorial_1: case tutorial_2: case tutorial_3: case tutorial_4: case tutorial_5: case tutorial_6:
+		music_choice = d_tutorial
+		break;
 	case entrance_1: case entrance_2: case entrance_3:
 		music_choice = d_entrance
 		break;

@@ -4,10 +4,26 @@ if instance_exists(obj_player) { // should this be optimized?
 	//else if obj_player.inventory == invstuff.gun obj_player.idlemode = 2
 	else if global.panic obj_player.idlemode = 4
 	else obj_player.idlemode = 0
+	
+	if obj_player.state == states.run and abs(obj_player.hsp) >= 12 {
+		camxoffset = clamp(camxoffset + obj_player.image_xscale, -80, 80)
+	} else camxoffset -= sign(camxoffset)
+	//camera_set_view_pos(view_camera[0], camera_get_view_x(view_camera[0]) + camxoffset, camera_get_view_y(view_camera[0]))
+	camera_set_view_border(view_camera[0], 440 - abs(camxoffset), 216)
 }
 
 if global.collect > 0 and global.timer[0] + global.timer[1] <= 0 {
 	global.collect = max(global.collect - 1, 0)
+}
+
+if global.camshake[0] != 0 {
+	view_xport[0] = random_range(-global.camshake[0], global.camshake[0])
+	global.camshake[0] -= 0.5
+}
+
+if global.camshake[1] != 0 {
+	view_yport[0] = random_range(-global.camshake[1], global.camshake[1])
+	global.camshake[1] -= 0.5
 }
 
 // panic
@@ -51,7 +67,7 @@ if keyboard_check_pressed(vk_anykey)
 	switch keyboard_lastkey
 	{
 		case vk_f1:
-			var tthing = get_integer("LIBRE TOWER - Debug Multi-Tool\n Enter a number to perform an option\n1: Set FPS, 2: Set Player State, 3: Change Room, 4: Change Player Int/Bool", 0)
+			var tthing = get_integer("LIBRE TOWER - Debug Multi-Tool\n Enter a number to perform an option\n1: Set FPS, 2: Set Player State, 3: Change Room, 4: Change Player Int/Bool; 5 = Player Command", 0)
 			switch tthing
 			{
 				case 0: break;
@@ -73,7 +89,7 @@ if keyboard_check_pressed(vk_anykey)
 					var door = get_string("Enter the door's index (A, B, C, D, etc)", "A")
 					var room_asset = asset_get_index(_room)
 					if !room_asset {
-						show_message("ERROR: Room doesn't exist!")
+						show_message("DEBUG MULTI-TOOL ERROR: Room doesn't exist!")
 						break;
 					}
 					global.targetDest = door
@@ -81,13 +97,34 @@ if keyboard_check_pressed(vk_anykey)
 					break;
 				case 4:
 					if !instance_exists(obj_player) {
-						show_message("ERROR: There is no player!")
+						show_message("DEBUG MULTI-TOOL ERROR: There is no player!")
 						break;
 					}
 					thing = get_string("Enter the name of the INTEGER/BOOLEAN variable you'd like to change:", 0)
 					var thing2 = get_integer("Enter the new value:", 0)
 					if variable_instance_get(obj_player, thing) {
 						variable_instance_set(obj_player, thing, thing2)
+					}
+				case 5:
+					if !instance_exists(obj_player) {
+						show_message("DEBUG MULTI-TOOL ERROR: There is no player!")
+						break;
+					}
+					thing = get_string("Enter a command you wish to execute.\nCase sensitive, space sensitive. Sorry!", 0)
+					switch thing
+					{
+						case "stun": with obj_player { stunplayer() } break;
+						case "hurt": with obj_player { hurtplayer() } break;
+						case "endlevel":
+							global.panic = false
+							global.timer = [2, 30]
+							global.targetDest = "A"
+							changeState(states.normal, true)
+							obj_hud.visible = false
+							obj_player.canmove = false
+							room_goto(endscreen)
+							break;
+						case "restart": game_restart() break;
 					}
 			}
 			break;

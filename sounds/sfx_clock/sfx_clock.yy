@@ -12,7 +12,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sfx_clock.wav",
-  "duration": 1.683447,
+  "duration": 0.853333,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",

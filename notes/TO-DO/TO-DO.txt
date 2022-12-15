@@ -17,4 +17,10 @@ TO DO:
 	* Probably a better escape theme (keep the harp leitmotif please) [DONE]
 * Make concepts/sprites for enemies
 * Make concepts/sprites for the Knight transformation, as well as any others that are to be made... or needed
-* Embed platforms directly into the collision code
+* Embed platforms directly into the collision code [DONE]
+* Fix some bugs
+	* When trying to run while directly next to destroyables, the player is locked into a running state
+	* In ARMORY_5, the destroyables on the platform can cause the player to get stuck if ran into
+	* Player is considered "on ground" if mid-air and colliding with a platform
+	* Platforms take priority over actual solids when colliding, causing issues, particularly destructibles.
+* REWRITE THE COLLISION CODE! It sucks and it's buggy as shit.

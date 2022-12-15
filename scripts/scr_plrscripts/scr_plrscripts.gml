@@ -89,7 +89,12 @@ function scr_plr_grab() {
 		state = states.normal
 	} */
 	statetimer -= 1
-	if statetimer <= 0 changeState(states.normal)
+	if statetimer <= 0 {
+		if scr_buttoncheck(vk_shift, gp_shoulderrb) {
+			changeState(states.run)
+			statevars[0] = 8
+		} else changeState(states.normal)
+	} 
 }
 #endregion
 
@@ -154,7 +159,11 @@ function scr_plr_run() {
 			case obj_solid: case obj_panicblock: case obj_panicblock_alt:
 				if statevars[0] >= 12 { // if running at full speed, stun, and regret your life choices
 					stunplayer()
-					statevars[0] = 0
+					scr_playsound(sfx_slam)
+					sprite_index = spr_player_wallslam
+					statevars[1] = spr_player_wallslam
+					global.camshake[0] += 8
+					statevars[0] = 1
 				} else {
 					hsp = 0
 					changeState(states.normal)
@@ -342,11 +351,13 @@ function scr_plr_hurt() {
 
 #region stun
 function scr_plr_stun() {
-	sprite_index = spr_player_hurt
+	if !statevars[1] sprite_index = spr_player_hurt
+	else sprite_index = statevars[1]
 	image_speed = 0.25
+	if statevars[0] and image_index > image_number - 1 image_index = image_number - 1
 	statetimer -= 1
 	if statetimer <= 0 {
-		changeState(states.normal)
+		changeState(states.normal, true)
 		canmove = true
 	}
 }
