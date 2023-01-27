@@ -1,14 +1,6 @@
 event_inherited()
 
-var plrsight = collision_line(x - 250, y, x + 250, y, obj_player, false, true)
-if plrsight {
-	if plrsight.state == states.run and abs(plrsight.hsp) >= 12 {
-		sprite_index = sprite_scared
-		image_index = sign(obj_player.x - x)
-		scared = true
-		hsp = 0
-	} else scared = false
-} else scared = false
+checkscare()
 
 if !scared {
 	if sprite_index != sprite_move sprite_index = sprite_move

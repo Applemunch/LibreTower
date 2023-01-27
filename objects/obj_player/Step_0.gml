@@ -24,14 +24,14 @@ switch state
 }
 
 mask_index = crouched ? spr_player_crouchmask : spr_player_mask
-walkspeed = 0.4 / (crouched + 1)
-maxspeed = 7 / (crouched + 1)
+walkspeed = crouched ? 0.2 : 0.4
+maxspeed = crouched ? 4.5 : 7
 if dogravity {
 	onground = false
 	var findplatform = instance_place(x, y + 1, obj_platform)
 	var findsolid = place_meeting(x, y + 1, obj_solid)
 		
-	if findsolid or findplatform and bbox_bottom < findplatform.y + 1 onground = true
+	if findsolid or findplatform and bbox_bottom < findplatform.y + 1 and sign(vsp) != -1 onground = true
 
 	if !onground {
 		vsp += 0.4
@@ -60,7 +60,8 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 			room_goto(endscreen)		
 		}
 	}
-
+	
+	// jump
 	if scr_buttoncheck_pressed(ord("Z"), gp_face3) and state != states.superjump {
 		if onground {
 			var holdingUp = crouched ? 0 : scr_buttoncheck(vk_up, gp_padu)
@@ -71,12 +72,14 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 		}
 	}
 	
+	// run
 	if onground and scr_buttoncheck(vk_shift, gp_shoulderrb) and !place_meeting(x + image_xscale, y, obj_solid) {
 		if !crouched and state != states.stunned and state != states.run and state != states.runturn and state != states.superjump and state != states.grab {
 			changeState(states.run)
 		}
 	}
 	
+	// dash
 	if scr_buttoncheck_pressed(ord("X"), gp_face4) {
 		if !crouched and state != states.stunned and state != states.grab and state != states.run and state != states.runturn and state != states.superjump {
 			statetimer = 45
@@ -84,21 +87,20 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 			scr_playsound(sfx_grab, true)
 		}
 	}
-
+	
+	// taunt
+	if scr_buttoncheck_pressed(ord("C"), gp_face1) and state != states.taunt {
+		canmove = false
+		dogravity = false
+		prevstate = state
+		changeState(states.taunt)
+		sprite_index = spr_player_taunt
+		image_index = random_range(0, sprite_get_number(sprite_index))
+		image_speed = 0
+		scr_playsound(sfx_taunt, true)
+		alarm[0] = 25
+	}
 }
-
-if canmove and scr_buttoncheck_pressed(ord("C"), gp_face1) and state != states.taunt {
-	canmove = false
-	dogravity = false
-	prevstate = state
-	changeState(states.taunt)
-	sprite_index = spr_player_taunt
-	image_index = random_range(0, sprite_get_number(sprite_index))
-	image_speed = 0
-	scr_playsound(sfx_taunt, true)
-	alarm[0] = 25
-}
-
 if state != states.ouch and place_meeting(x,y, obj_hurtblock) and !invuln {
 	hurtplayer(-6 * image_xscale, -4, true)
 }

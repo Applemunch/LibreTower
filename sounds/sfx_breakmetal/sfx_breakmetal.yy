@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sound34",
+  "soundFile": "sfx_breakmetal.wav",
   "duration": 0.474195,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Sound34",
+  "name": "sfx_breakmetal",
   "tags": [],
   "resourceType": "GMSound",
 }

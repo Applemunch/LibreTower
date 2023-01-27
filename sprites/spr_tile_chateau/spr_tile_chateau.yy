@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"17ff0316-cb57-424d-a6b1-b4b12f9f7fee","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"17ff0316-cb57-424d-a6b1-b4b12f9f7fee","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},"LayerId":{"name":"8c6c94e3-c70b-4ff4-9513-16d40777e19d","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_tile_blank","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},"resourceVersion":"1.0","name":"17ff0316-cb57-424d-a6b1-b4b12f9f7fee","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"5f0629f1-ab69-4d05-9314-49a5fec570a6","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"5f0629f1-ab69-4d05-9314-49a5fec570a6","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},"LayerId":{"name":"3b238a3d-5e21-4b9c-b027-ea0258c70744","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_tile_chateau","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},"resourceVersion":"1.0","name":"5f0629f1-ab69-4d05-9314-49a5fec570a6","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_tile_blank","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},
+    "spriteId": {"name":"spr_tile_chateau","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"da172974-36ed-4810-a794-e85e290cb987","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"17ff0316-cb57-424d-a6b1-b4b12f9f7fee","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
+            {"id":"27f8834e-536a-4670-a505-50f671cf1f45","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"5f0629f1-ab69-4d05-9314-49a5fec570a6","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 0,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_tile_blank","path":"sprites/spr_tile_blank/spr_tile_blank.yy",},
+    "parent": {"name":"spr_tile_chateau","path":"sprites/spr_tile_chateau/spr_tile_chateau.yy",},
     "resourceVersion": "1.4",
-    "name": "spr_tile_blank",
+    "name": "spr_tile_chateau",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"8c6c94e3-c70b-4ff4-9513-16d40777e19d","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"3b238a3d-5e21-4b9c-b027-ea0258c70744","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites/tiles.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_tile_blank",
+  "name": "spr_tile_chateau",
   "tags": [],
   "resourceType": "GMSprite",
 }

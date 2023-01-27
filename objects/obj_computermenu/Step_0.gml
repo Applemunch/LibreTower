@@ -10,7 +10,7 @@ if scr_buttoncheck_pressed(vk_up, gp_padu) or scr_buttoncheck_pressed(vk_down, g
 
 if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 	if !instance_exists(obj_player) {
-		if debug show_message("Can't enter level! Player doesn't exist")
+		if debug show_error("Can't enter level! Player doesn't exist", true)
 		exit;
 	}
 	with obj_player {
@@ -20,7 +20,7 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 		visible = true
 		scr_resetlevel()
 	}
-	instance_destroy(self)
 	obj_player.canmove = true
+	instance_destroy(self)
 	instance_activate_object(obj_hud)
 }

@@ -32,14 +32,5 @@ switch state
 			state = 0
 			fired = false
 		}
-		var plrsight = collision_line(x - 250, y, x + 250, y, obj_player, false, true)
-		if plrsight {
-			if plrsight.state == states.run and abs(plrsight.hsp) >= 12 {
-				sprite_index = sprite_scared
-				scared = true
-				hsp = 0
-				state = 0
-				statetimer = 0
-			} else scared = false
-		}
+		checkscare()
 }

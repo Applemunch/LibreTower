@@ -104,6 +104,8 @@ LT Build 6 (12/14/2022, yikes):
 LT Build 6, Hotfix 1 (TBA)
 - Room changes:
 	- TUTORIAL_3 now has a player transition for coming back to it from later in the tutorial
+	- The TUTORIAL also had a wrong warp transition, which was fixed.
 	- ARMORY's left side was given doors to go back after grabbing the key
 	- Added a solid to the roof of the first ARMORY level. Just incase.
-- 
+- Adjusted tilesets
+- Background for the title screen is now a bit more fancy

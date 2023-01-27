@@ -55,6 +55,29 @@ function changeOpt(name, value) {
 	return value
 }
 
+function switchOpts() {
+	switch curmenu
+	{
+		case menutype.main:
+			curopt = options_main
+			break;
+		case menutype.options: case menutype.options_video: case menutype.options_audio: case menutype.options_fx:
+			break;
+		case menutype.cleardata:
+			curopt = options_yesno
+			break;
+	}
+	selectmax = array_length(curopt) - 1
+}
+
+function getToggled(input, isCustom = false, custom_on = "On", custom_off = "Off") {
+	if isCustom {
+		return input ? custom_on : custom_off
+	} else {
+		return input ? "On" : "Off"
+	}
+}
+
 if !file_exists(global.savedataname + ".ini") {
 	ini_open(global.savedataname + ".ini")
 	global.sfxvol = ini_write_real("Options","SoundVol",100)
@@ -83,28 +106,5 @@ if !file_exists(global.savedataname + ".ini") {
 	ini_close()
 }
 window_set_fullscreen(global.fullscreen)
-
-function switchOpts() {
-	switch curmenu
-	{
-		case menutype.main:
-			curopt = options_main
-			break;
-		case menutype.options: case menutype.options_video: case menutype.options_audio: case menutype.options_fx:
-			break;
-		case menutype.cleardata:
-			curopt = options_yesno
-			break;
-	}
-	selectmax = array_length(curopt) - 1
-}
-
-function getToggled(input, isCustom = false, custom_on = "On", custom_off = "Off") {
-	if isCustom {
-		return input ? custom_on : custom_off
-	} else {
-		return input ? "On" : "Off"
-	}
-}
 
 image_speed = 0.25

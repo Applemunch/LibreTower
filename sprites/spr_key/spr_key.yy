@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites",
-    "path": "folders/Sprites.yy",
+    "name": "collectibles",
+    "path": "folders/Sprites/collectibles.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_key",

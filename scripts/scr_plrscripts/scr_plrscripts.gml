@@ -105,11 +105,13 @@ function scr_plr_run() {
 	statevar 1 is for the run turn
 	statevar 2 is for the step sounds
 	statevar 3 is for the max speed sound and effects
-	statevar 4 will be for the jump debounce, if false then do the jump amin
+	statevar 4 is for if the jump anim has played yet
 	
 	to-do: make it so that if you jump--and ONLY when you jump--will the player's sprite do a jump
 	*/
 	image_speed = 0.30 * clamp(statevars[0] / 13, 0.2, 1)
+	
+	// handle the current sprite
 	sprite_index = statevars[0] >= 12 ? spr_player_runmax : spr_player_run
 	statevars[0] += 0.25
 	statevars[0] = clamp(statevars[0], 0, 12)

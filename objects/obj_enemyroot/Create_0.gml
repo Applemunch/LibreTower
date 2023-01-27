@@ -37,3 +37,17 @@ function kill() {
 	global.camshake[0] += 4
 	instance_destroy(self)
 }
+
+function checkscare() {
+	var plrsight = collision_line(x - 250, y, x + 250, y, obj_player, false, true)
+	if plrsight {
+		if plrsight.state == states.run and plrsight.statevars[0] >= 12 {
+			sprite_index = sprite_scared
+			scared = true
+			hsp = 0
+			state = 0
+			statetimer = 0
+			image_xscale = -sign(x - plrsight.x)
+		} else scared = false
+	}
+}

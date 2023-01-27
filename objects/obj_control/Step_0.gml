@@ -17,7 +17,8 @@ if global.collect > 0 and global.timer[0] + global.timer[1] <= 0 {
 }
 
 if global.camshake[0] != 0 {
-	view_xport[0] = random_range(-global.camshake[0], global.camshake[0])
+	global.camshake_xdir = -global.camshake_xdir
+	view_xport[0] = global.camshake[0] * global.camshake_xdir
 	global.camshake[0] -= 0.5
 }
 

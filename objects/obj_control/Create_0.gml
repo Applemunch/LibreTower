@@ -14,6 +14,7 @@ global.detrixies = [0, 0, 0, 0, 0]
 global.secrets = [] // stores secret rooms the player visited'
 
 global.camshake = [0, 0]
+global.camshake_xdir = 1
 
 panictimer = 60
 panictimespent = 0 // used for screen shake
