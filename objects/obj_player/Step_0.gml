@@ -1,3 +1,6 @@
+if pingpong_bounce_cd > 0 pingpong_bounce_cd--
+pingpong_spin += hsp * 0.04
+
 switch state
 {
 	case states.normal:
@@ -37,16 +40,27 @@ if dogravity {
 		vsp += 0.4
 	}
 	scr_plr_collision()
+
+	// Paddle trampolines: use existing obj_platform instances and collision.
+	if onground and findplatform != noone and findplatform.pingpong_racket and pingpong_bounce_cd <= 0 {
+		vsp = -14
+		onground = false
+		pingpong_bounce_cd = 12
+		global.collect += 25
+		global.pingpong_rally += 1
+		global.camshake[1] += 2
+		scr_playsound(sfx_bump, true)
+	}
 }
 
-if canmove { // disable moving, jumping, grabbing, and entering doors
+if canmove {
 	if onground and scr_buttoncheck_pressed(vk_up, gp_padu) {
 		var possibleDoor = instance_place(x,y,obj_door)
 		var checkExit = true
 		if possibleDoor {
 			global.targetDest = possibleDoor.targetDest
 			room_goto(possibleDoor.targetRoom)
-			changeState(states.normal, true) // reset the player state
+			changeState(states.normal, true)
 			if possibleDoor.object_index == obj_leveldoor and possibleDoor.resetlvl scr_resetlevel()
 			checkExit = false
 		}
@@ -57,7 +71,7 @@ if canmove { // disable moving, jumping, grabbing, and entering doors
 			changeState(states.normal, true)
 			obj_hud.visible = false
 			obj_player.canmove = false
-			room_goto(endscreen)		
+			room_goto(endscreen)
 		}
 	}
 	

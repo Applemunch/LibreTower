@@ -81,7 +81,6 @@
     {"id":{"name":"spr_plrhud_yippee","path":"sprites/spr_plrhud_yippee/spr_plrhud_yippee.yy",},"order":2,},
     {"id":{"name":"obj_tileshow","path":"objects/obj_tileshow/obj_tileshow.yy",},"order":22,},
     {"id":{"name":"spr_destroyable","path":"sprites/spr_destroyable/spr_destroyable.yy",},"order":0,},
-    {"id":{"name":"d_title","path":"sounds/d_title/d_title.yy",},"order":0,},
     {"id":{"name":"bg_tower","path":"sprites/bg_tower/bg_tower.yy",},"order":4,},
     {"id":{"name":"sfx_runturn","path":"sounds/sfx_runturn/sfx_runturn.yy",},"order":10,},
     {"id":{"name":"sfx_break","path":"sounds/sfx_break/sfx_break.yy",},"order":8,},

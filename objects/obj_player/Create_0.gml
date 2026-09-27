@@ -4,13 +4,16 @@ onground = false
 crouched = false
 canmove = true
 dogravity = true
-//jumpbuffer = 40
 
 walkspeed = 0.8
 maxspeed = 7
-idlemode = 0 // 0 = normal, 1 = hurt, 2 = panic (UNUSED), 3 = crouched
+idlemode = 0
 
-statevars = array_create(32) // if you want to add or change a player state and it has a variable, chuck it here
+// Ping Pong Tower movement additions.
+pingpong_bounce_cd = 0
+pingpong_spin = 0
+
+statevars = array_create(32)
 global.targetDest = "A"
 
 enum states {
@@ -20,26 +23,16 @@ enum states {
 	grab,
 	run,
 	runturn,
-	//wallrun,
 	superjump,
 	taunt,
 	ouch
 }
 state = 0
 prevstate = state
-statetimer = 0 // used to switch between certain states
+statetimer = 0
 
 invuln = false
 invulm_timer = 0
-
-/*
-enum invstuff {
-	none,
-	gun,
-	melee
-}
-inventory = invstuff.none
-*/
 
 depth = -2
 image_speed = 0.25
@@ -52,7 +45,7 @@ function changeSprite(input) {
 
 function changeState(input, resetvars = true) {
 	state = input
-	image_index = 0 // just for good measure
+	image_index = 0
 	if resetvars statevars = array_create(32)
 }
 

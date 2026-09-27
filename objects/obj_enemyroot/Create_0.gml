@@ -15,6 +15,13 @@ mask_index = spr_player_mask
 scared = false
 scaretimer = 0
 
+// Ping Pong Tower enemy state.
+pingpong_enemy = true
+pingpong_boss = false
+pingpong_maxhp = 1
+pingpong_hit_timer = 0
+pingpong_shot_timer = 90
+
 function kill() {
 	scr_playsound(sfx_enemyhit)
 	if global.particles {

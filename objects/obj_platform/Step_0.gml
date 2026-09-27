@@ -1,9 +1,5 @@
-/*
-if obj_player.bbox_bottom - 1 < y {
-	active = true
-} else active = false
-
-mask_index = active ? sprite_index : spr_blank
-
-// to-do: if an object that can collide with this is above it, make it so that ONLY that object and others above it can collide with it
-*/
+// Ping Pong Tower marks selected original platforms as paddle trampolines.
+// The actual bounce is resolved in obj_player so the original collision system remains untouched.
+if pingpong_racket {
+	image_speed = 0
+}

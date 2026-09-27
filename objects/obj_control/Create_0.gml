@@ -1,26 +1,37 @@
 #macro debug false
 
-global.music = audio_play_sound(d_title,-1,true)
+global.music = audio_play_sound(d_hub,-1,true)
 global.ltfont = font_add_sprite_ext(spr_font,"1234567890",false,0)
-global.dslist = [] // using a DS list was too buggy
+global.dslist = []
 global.collect = 0
 global.panic = false
 global.timer = [2, 30]
 global.keys = 0
 
-global.tileset = noone // used for secret destructibles
+global.tileset = noone
 
 global.detrixies = [0, 0, 0, 0, 0]
-global.secrets = [] // stores secret rooms the player visited'
+global.secrets = []
 
 global.camshake = [0, 0]
 global.camshake_xdir = 1
 
+// Ping Pong Tower state. The original LibreTower assets and rooms remain intact.
+global.pingpong_mode = true
+global.pingpong_stage = "TABLE TRAINING"
+global.pingpong_rally = 0
+global.pingpong_boss_active = false
+global.pingpong_boss_hp = 0
+global.pingpong_boss_maxhp = 8
+
 panictimer = 60
-panictimespent = 0 // used for screen shake
+panictimespent = 0
 didpanicsound = false
 
 camxoffset = 0
+
+// Draw the court background behind the original room art.
+depth = 1000000
 
 if debug {
 	lastkey = noone
@@ -45,9 +56,9 @@ function checkSecret(input) {
 			var len = array_length(global.secrets)
 			var suffix = len != 1 ? "s" : ""
 			if array_length(global.secrets) == global.secret_req {
-				text = "You found all of the secrets!"
+				text = "You found all of the secret tables!"
 			} else {
-				text = "You found " + string(len) + " secret" + suffix + "!"
+				text = "You found " + string(len) + " secret table" + suffix + "!"
 			}
 		}
 	}
@@ -55,18 +66,6 @@ function checkSecret(input) {
 
 #endregion
 #region rank-related
-/*
-the ranks go in order from worst to best: F, D, C, B, A, and S
-
-F rank requirements are that you collect NO detrixies or secrets and get enough points for D rank
-
-D, C, B, and A ranks are judged by points (global.rank_req)
-A is at or above rank_req, B is 3/4ths of rank_req, C is 1/2 of rank_req, and D is 1/4 of rank_req.
-in bitshift terms, A is >>0, B is >>1 > >>2, C is >>1, and D is >>2.
-don't worry, points aren't meant to be decimals anyway
-
-S rank requirements are that you find every detrixie, find all the secrets, don't get hurt, and get enough points for an A rank.
-*/
 
 global.rank_req = 10000
 global.secret_req = 6

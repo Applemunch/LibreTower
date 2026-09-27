@@ -9,7 +9,7 @@ enum menutype {
 curmenu = menutype.main
 
 options_main = [
-	"New Game",
+	"Start Tournament",
 	"Options",
 	"Clear Data",
 	"Exit"
@@ -47,7 +47,7 @@ function preview_sfx() {
 
 #endregion
 
-global.savedataname = "LibreTower"
+global.savedataname = "PingPongTower"
 function changeOpt(name, value) {
 	ini_open(global.savedataname + ".ini")
 	ini_write_real("Options",name,value)

@@ -6,7 +6,7 @@ if scr_buttoncheck_pressed(ord("Z"), gp_face3) {
 			switch select
 			{
 				case 0:
-					room_goto(testroom)
+					room_goto(tutorial_1)
 					break;
 				case 1:
 					curmenu = menutype.options
